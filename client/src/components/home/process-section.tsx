@@ -32,7 +32,7 @@ export default function ProcessSection() {
         { icon: TrendingUp, text: "Continuous optimization & scaling" }
       ],
       duration: "Ongoing",
-      outcome: "Predictable pipeline with 4+ monthly calls",
+      outcome: "Predictable pipeline with a minimum of 4 monthly calls",
       gradient: "from-emerald-600 via-green-600 to-teal-600",
       bgColor: "bg-emerald-50 dark:bg-emerald-950/20"
     }
