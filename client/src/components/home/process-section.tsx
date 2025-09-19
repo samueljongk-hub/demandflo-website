@@ -1,281 +1,140 @@
 import { motion } from "framer-motion";
-import { Search, Target, Users, TrendingUp, CheckCircle, ArrowRight, BarChart3, Mail, Zap, Settings } from "lucide-react";
+import { Target, Users, TrendingUp, CheckCircle, ArrowRight, BarChart3, Mail, Zap, Settings, Clock, Rocket, CalendarCheck } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export default function ProcessSection() {
-  const processSteps = [
+  const phases = [
     {
-      number: "01",
-      title: "Strategy & Discovery",
-      subtitle: "Deep Market Intelligence",
-      description: "We start by analyzing your business landscape, ideal customer profiles, and competitive positioning to build a data-driven strategy that aligns with your revenue goals.",
-      keyActivities: [
-        { icon: Search, text: "Business & market analysis" },
-        { icon: Target, text: "Ideal customer profiling" },
-        { icon: BarChart3, text: "Competitive landscape review" },
-        { icon: CheckCircle, text: "Revenue goal alignment" }
+      phase: "Phase 1",
+      title: "Foundation & Setup",
+      subtitle: "Strategic Preparation",
+      description: "We establish the groundwork for your success by aligning strategy, configuring systems, and preparing personalized outreach sequences that resonate with your ideal prospects.",
+      keyElements: [
+        { icon: Target, text: "ICP alignment & messaging strategy" },
+        { icon: Settings, text: "Systems configuration & optimization" },
+        { icon: Users, text: "Prospect research & list building" },
+        { icon: Mail, text: "Personalized sequence creation" }
       ],
-      timeframe: "Week 1",
-      deliverable: "Strategic Foundation Document",
+      duration: "Initial weeks",
+      outcome: "Ready-to-launch campaign infrastructure",
       gradient: "from-violet-600 via-purple-600 to-indigo-600",
-      bgPattern: "strategy"
+      bgColor: "bg-violet-50 dark:bg-violet-950/20"
     },
     {
-      number: "02",
-      title: "Campaign Architecture",
-      subtitle: "Precision-Targeted Outreach",
-      description: "We design and deploy multi-channel campaigns with laser-focused targeting, compelling messaging, and optimized touchpoints that resonate with your prospects.",
-      keyActivities: [
-        { icon: Target, text: "Advanced audience segmentation" },
-        { icon: Mail, text: "Message sequence development" },
-        { icon: Settings, text: "Multi-channel campaign setup" },
-        { icon: CheckCircle, text: "Landing page optimization" }
+      phase: "Phase 2", 
+      title: "Launch & Optimization",
+      subtitle: "Active Growth Engine",
+      description: "Your campaigns go live with continuous monitoring, optimization, and call booking to ensure consistent pipeline growth and maximum ROI from day one.",
+      keyElements: [
+        { icon: Rocket, text: "Live campaign deployment" },
+        { icon: CalendarCheck, text: "Qualified call booking & handoff" },
+        { icon: BarChart3, text: "Performance tracking & refinement" },
+        { icon: TrendingUp, text: "Continuous optimization & scaling" }
       ],
-      timeframe: "Week 2",
-      deliverable: "Live Campaign Infrastructure",
-      gradient: "from-blue-600 via-cyan-600 to-teal-600",
-      bgPattern: "campaign"
-    },
-    {
-      number: "03",
-      title: "Lead Nurturing System",
-      subtitle: "Relationship-Building Automation",
-      description: "Our intelligent nurture sequences build trust and guide prospects through your sales funnel with personalized touchpoints and value-driven content.",
-      keyActivities: [
-        { icon: Users, text: "Automated nurture sequences" },
-        { icon: Mail, text: "Personalized follow-up cadence" },
-        { icon: Target, text: "Behavioral trigger responses" },
-        { icon: CheckCircle, text: "Trust-building content delivery" }
-      ],
-      timeframe: "Week 3-4",
-      deliverable: "Active Nurture System",
+      duration: "Ongoing",
+      outcome: "Predictable pipeline with 4+ monthly calls",
       gradient: "from-emerald-600 via-green-600 to-teal-600",
-      bgPattern: "nurture"
-    },
-    {
-      number: "04",
-      title: "Scale & Optimization",
-      subtitle: "Continuous Growth Engine",
-      description: "We continuously monitor, test, and optimize every element of your campaigns to maximize ROI and scale successful strategies across new markets and audiences.",
-      keyActivities: [
-        { icon: TrendingUp, text: "Performance optimization" },
-        { icon: BarChart3, text: "A/B testing implementation" },
-        { icon: Zap, text: "Scaling successful campaigns" },
-        { icon: CheckCircle, text: "ROI maximization" }
-      ],
-      timeframe: "Ongoing",
-      deliverable: "Scalable Growth System",
-      gradient: "from-orange-600 via-red-600 to-pink-600",
-      bgPattern: "scale"
+      bgColor: "bg-emerald-50 dark:bg-emerald-950/20"
     }
   ];
 
-  // Render visual patterns for each step
-  const renderStepVisualization = (pattern: string, gradient: string) => {
-    const baseClasses = "relative w-full h-48 rounded-2xl overflow-hidden";
+  // Render timeline visualization for each phase
+  const renderPhaseVisualization = (phaseIndex: number, gradient: string) => {
+    const baseClasses = "relative w-full h-56 rounded-2xl overflow-hidden";
     
-    if (pattern === "strategy") {
+    if (phaseIndex === 0) {
+      // Foundation Phase
       return (
-        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-4 text-white`} data-testid="viz-strategy">
+        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white`} data-testid="viz-foundation">
           <div className="h-full flex flex-col justify-between">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium opacity-90">Market Analysis</span>
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-                </div>
+                <span className="text-sm font-medium opacity-90">Foundation Setup</span>
+                <Clock className="h-4 w-4 animate-pulse" />
               </div>
               
-              <div className="grid grid-cols-2 gap-2">
-                <div className="bg-white/20 rounded p-2">
-                  <div className="text-xs font-medium">Target Audience</div>
-                  <div className="text-xs opacity-80">Defined</div>
-                </div>
-                <div className="bg-white/20 rounded p-2">
-                  <div className="text-xs font-medium">Competitors</div>
-                  <div className="text-xs opacity-80">Analyzed</div>
-                </div>
-                <div className="bg-white/20 rounded p-2">
-                  <div className="text-xs font-medium">Market Size</div>
-                  <div className="text-xs opacity-80">$2.4M</div>
-                </div>
-                <div className="bg-white/20 rounded p-2">
-                  <div className="text-xs font-medium">Opportunity</div>
-                  <div className="text-xs opacity-80">High</div>
-                </div>
+              <div className="space-y-2">
+                {[
+                  { label: "Strategy Alignment", status: "Complete" },
+                  { label: "System Configuration", status: "Complete" },
+                  { label: "List Building", status: "Complete" },
+                  { label: "Message Creation", status: "Ready" }
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="bg-white/20 rounded p-2 flex items-center justify-between"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: idx * 0.15 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="text-xs font-medium">{item.label}</span>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-3 w-3 text-green-300" />
+                      <span className="text-xs opacity-80">{item.status}</span>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
             
-            <div className="text-center pt-2 border-t border-white/20">
-              <div className="text-lg font-bold">Strategy Ready</div>
+            <div className="text-center pt-3 border-t border-white/20">
+              <div className="text-lg font-bold">Ready to Launch</div>
+              <div className="text-xs opacity-80">Foundation Complete</div>
             </div>
           </div>
         </div>
       );
     }
     
-    if (pattern === "campaign") {
-      return (
-        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-4 text-white relative`} data-testid="viz-campaign">
-          <div className="absolute top-2 right-2">
-            <Settings className="h-4 w-4 animate-spin" style={{animationDuration: '3s'}} />
-          </div>
-          
+    // Growth Phase
+    return (
+      <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white relative`} data-testid="viz-growth">
+        <div className="absolute top-4 right-4">
+          <Rocket className="h-5 w-5 animate-bounce" style={{animationDuration: '2s'}} />
+        </div>
+        
+        <div className="h-full flex flex-col justify-between">
           <div className="space-y-3">
-            <div className="bg-white/20 rounded p-3">
-              <div className="text-xs font-medium mb-1">Campaign Status</div>
-              <div className="text-sm font-bold">Live & Targeting</div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium opacity-90">Live Campaign</span>
+              <div className="flex space-x-1">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-xs opacity-80">Active</span>
+              </div>
             </div>
             
-            <div className="grid grid-cols-3 gap-2 text-center">
-              <div className="bg-white/15 rounded p-2">
-                <div className="text-lg font-bold">3</div>
-                <div className="text-xs">Channels</div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-white/20 rounded p-2 text-center">
+                <div className="text-lg font-bold">12</div>
+                <div className="text-xs opacity-80">Calls This Month</div>
               </div>
-              <div className="bg-white/15 rounded p-2">
-                <div className="text-lg font-bold">85%</div>
-                <div className="text-xs">Match Rate</div>
-              </div>
-              <div className="bg-white/15 rounded p-2">
-                <div className="text-lg font-bold">24h</div>
-                <div className="text-xs">Active</div>
+              <div className="bg-white/20 rounded p-2 text-center">
+                <div className="text-lg font-bold">8.5%</div>
+                <div className="text-xs opacity-80">Response Rate</div>
               </div>
             </div>
             
             <div className="bg-white/20 rounded p-2">
-              <div className="flex justify-between items-center">
-                <span className="text-xs">Campaign Progress</span>
-                <span className="text-xs font-bold">76%</span>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-xs">Pipeline Growth</span>
+                <span className="text-xs font-bold">+240%</span>
               </div>
-              <div className="w-full bg-white/30 rounded-full h-1.5 mt-1">
+              <div className="w-full bg-white/30 rounded-full h-1.5">
                 <motion.div 
-                  className="bg-white h-1.5 rounded-full"
+                  className="bg-green-400 h-1.5 rounded-full"
                   initial={{ width: 0 }}
-                  whileInView={{ width: "76%" }}
+                  whileInView={{ width: "85%" }}
                   transition={{ duration: 2, delay: 0.5 }}
                   viewport={{ once: true }}
                 ></motion.div>
               </div>
             </div>
           </div>
-        </div>
-      );
-    }
-    
-    if (pattern === "nurture") {
-      return (
-        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-4 text-white`} data-testid="viz-nurture">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Nurture Sequence</span>
-              <Users className="h-4 w-4 animate-pulse" />
-            </div>
-            
-            <div className="space-y-2">
-              {[1, 2, 3, 4].map((step, idx) => (
-                <motion.div
-                  key={step}
-                  className="bg-white/20 rounded p-2 flex items-center space-x-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-6 h-6 bg-white/30 rounded-full flex items-center justify-center text-xs font-bold">
-                    {step}
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-xs font-medium">
-                      {step === 1 && "Welcome Email"}
-                      {step === 2 && "Value Content"}
-                      {step === 3 && "Case Study"}
-                      {step === 4 && "Booking CTA"}
-                    </div>
-                    <div className="text-xs opacity-70">
-                      {step === 1 && "Day 1"}
-                      {step === 2 && "Day 3"}
-                      {step === 3 && "Day 7"}
-                      {step === 4 && "Day 14"}
-                    </div>
-                  </div>
-                  <CheckCircle className="h-3 w-3 text-green-300" />
-                </motion.div>
-              ))}
-            </div>
-            
-            <div className="text-center pt-2 border-t border-white/20">
-              <div className="text-sm font-bold">87% Open Rate</div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    
-    // scale visualization
-    return (
-      <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-4 text-white`} data-testid="viz-scale">
-        <div className="h-full flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium">Growth Metrics</span>
-              <TrendingUp className="h-4 w-4" />
-            </div>
-            
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-xs">Leads Generated</span>
-                <div className="flex items-center space-x-1">
-                  <div className="w-8 h-1 bg-white/30 rounded">
-                    <motion.div 
-                      className="h-1 bg-white rounded"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "85%" }}
-                      transition={{ duration: 1.5, delay: 0.3 }}
-                      viewport={{ once: true }}
-                    ></motion.div>
-                  </div>
-                  <span className="text-xs font-bold">+240%</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-xs">Conversion Rate</span>
-                <div className="flex items-center space-x-1">
-                  <div className="w-8 h-1 bg-white/30 rounded">
-                    <motion.div 
-                      className="h-1 bg-white rounded"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "70%" }}
-                      transition={{ duration: 1.5, delay: 0.6 }}
-                      viewport={{ once: true }}
-                    ></motion.div>
-                  </div>
-                  <span className="text-xs font-bold">+180%</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-xs">ROI</span>
-                <div className="flex items-center space-x-1">
-                  <div className="w-8 h-1 bg-white/30 rounded">
-                    <motion.div 
-                      className="h-1 bg-white rounded"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "95%" }}
-                      transition={{ duration: 1.5, delay: 0.9 }}
-                      viewport={{ once: true }}
-                    ></motion.div>
-                  </div>
-                  <span className="text-xs font-bold">+320%</span>
-                </div>
-              </div>
-            </div>
-          </div>
           
-          <div className="text-center pt-2 border-t border-white/20">
+          <div className="text-center pt-3 border-t border-white/20">
             <div className="text-lg font-bold">Scaling Success</div>
+            <div className="text-xs opacity-80">Ongoing Optimization</div>
           </div>
         </div>
       </div>
@@ -283,125 +142,140 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden" data-testid="process-section">
+    <section className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden" data-testid="process-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-display font-bold mb-6" data-testid="text-process-title">
-            How We <span className="gradient-text">Drive Results</span>
+            Our <span className="gradient-text">Proven Process</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed" data-testid="text-process-description">
-            Our proven 4-phase methodology transforms your lead generation from scattered efforts into a predictable revenue engine with measurable results at every step
+            A strategic 2-phase approach that transforms your outreach from generic messaging into a predictable pipeline-building system
           </p>
         </motion.div>
 
-        <div className="space-y-16">
-          {processSteps.map((step, index) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 border-l-4 border-l-primary" data-testid={`process-step-${step.number}`}>
-                <div className={`grid lg:grid-cols-3 gap-0 min-h-[400px] ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                  {/* Content Section */}
-                  <div className={`lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                    <div className="flex items-center space-x-4 mb-2">
-                      <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${step.gradient} flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
-                        {step.number}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-1">{step.title}</h3>
-                        <p className="text-lg text-primary font-semibold">{step.subtitle}</p>
-                      </div>
-                      <div className="text-right text-sm">
-                        <div className="font-semibold text-muted-foreground">{step.timeframe}</div>
-                        <div className="text-xs text-muted-foreground/70">Timeline</div>
-                      </div>
-                    </div>
-                    
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-foreground">Key Activities:</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {step.keyActivities.map((activity, activityIndex) => (
-                          <motion.div
-                            key={activityIndex}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: (index * 0.1) + (activityIndex * 0.1) + 0.3 }}
-                            viewport={{ once: true }}
-                            className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50 hover:bg-muted/70 transition-colors"
-                            data-testid={`activity-${step.number}-${activityIndex}`}
-                          >
-                            <activity.icon className="h-4 w-4 text-primary flex-shrink-0" />
-                            <span className="text-sm font-medium text-foreground">{activity.text}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <div>
-                        <div className="font-semibold text-foreground">Deliverable: {step.deliverable}</div>
-                        <div className="text-sm text-muted-foreground">Completed by end of {step.timeframe.toLowerCase()}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Visualization Section */}
-                  <div className={`bg-muted/30 p-8 lg:p-12 flex items-center justify-center ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.8, delay: (index * 0.1) + 0.2 }}
-                      viewport={{ once: true }}
-                      className="w-full max-w-sm"
-                    >
-                      {renderStepVisualization(step.bgPattern, step.gradient)}
-                    </motion.div>
-                  </div>
+        {/* Timeline Connector */}
+        <div className="relative mb-16">
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-violet-500 via-purple-500 to-emerald-500 opacity-20"></div>
+          
+          <div className="space-y-24">
+            {phases.map((phase, index) => (
+              <motion.div
+                key={phase.phase}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                {/* Phase Timeline Marker */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-4 z-10">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                    viewport={{ once: true }}
+                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${phase.gradient} flex items-center justify-center text-white font-bold text-lg shadow-xl border-4 border-background`}
+                  >
+                    {index + 1}
+                  </motion.div>
                 </div>
-              </Card>
 
-              {/* Process Flow Connector */}
-              {index < processSteps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, scaleY: 0 }}
-                  whileInView={{ opacity: 1, scaleY: 1 }}
-                  transition={{ duration: 0.8, delay: (index * 0.1) + 0.5 }}
-                  viewport={{ once: true }}
-                  className="flex justify-center my-12"
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-1 h-12 bg-gradient-to-b from-primary to-primary/50"></div>
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                      <ArrowRight className="h-4 w-4 text-primary rotate-90" />
+                <Card className={`p-0 overflow-hidden hover:shadow-2xl transition-all duration-500 ${phase.bgColor} border-2 border-primary/10`} data-testid={`phase-${index + 1}`}>
+                  <div className="grid lg:grid-cols-5 min-h-[450px]">
+                    {/* Content Section */}
+                    <div className="lg:col-span-3 p-8 lg:p-12 flex flex-col justify-center space-y-6">
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-3">
+                          <span className={`px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r ${phase.gradient} text-white`}>
+                            {phase.phase}
+                          </span>
+                          <span className="text-sm text-muted-foreground font-medium">{phase.duration}</span>
+                        </div>
+                        <h3 className="text-3xl lg:text-4xl font-bold text-foreground">{phase.title}</h3>
+                        <p className="text-xl text-primary font-semibold">{phase.subtitle}</p>
+                      </div>
+                      
+                      <p className="text-lg text-muted-foreground leading-relaxed">
+                        {phase.description}
+                      </p>
+
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-foreground text-lg">Key Focus Areas:</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {phase.keyElements.map((element, elementIndex) => (
+                            <motion.div
+                              key={elementIndex}
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.5, delay: (index * 0.2) + (elementIndex * 0.1) + 0.4 }}
+                              viewport={{ once: true }}
+                              className="flex items-start space-x-3 p-4 rounded-lg bg-background/70 hover:bg-background/90 transition-colors border border-primary/10"
+                              data-testid={`element-${index + 1}-${elementIndex}`}
+                            >
+                              <element.icon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                              <span className="text-sm font-medium text-foreground">{element.text}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className={`flex items-start space-x-4 p-6 bg-gradient-to-r ${phase.gradient} text-white rounded-lg shadow-lg`}>
+                        <CheckCircle className="h-6 w-6 flex-shrink-0 mt-1" />
+                        <div>
+                          <div className="font-bold text-lg mb-1">Phase Outcome:</div>
+                          <div className="text-sm opacity-90">{phase.outcome}</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Visualization Section */}
+                    <div className="lg:col-span-2 p-8 lg:p-12 flex items-center justify-center bg-gradient-to-br from-muted/30 to-muted/10">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: (index * 0.2) + 0.3 }}
+                        viewport={{ once: true }}
+                        className="w-full max-w-sm"
+                      >
+                        {renderPhaseVisualization(index, phase.gradient)}
+                      </motion.div>
                     </div>
                   </div>
-                </motion.div>
-              )}
-            </motion.div>
-          ))}
+                </Card>
+
+                {/* Process Flow Arrow */}
+                {index < phases.length - 1 && (
+                  <motion.div
+                    initial={{ opacity: 0, scaleY: 0 }}
+                    whileInView={{ opacity: 1, scaleY: 1 }}
+                    transition={{ duration: 0.8, delay: (index * 0.2) + 0.6 }}
+                    viewport={{ once: true }}
+                    className="flex justify-center my-12"
+                  >
+                    <div className="flex flex-col items-center">
+                      <div className="w-1 h-16 bg-gradient-to-b from-violet-500 to-emerald-500 opacity-40"></div>
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500 flex items-center justify-center shadow-lg">
+                        <ArrowRight className="h-5 w-5 text-white rotate-90" />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Success Metrics CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           viewport={{ once: true }}
           className="mt-24"
         >
@@ -409,10 +283,10 @@ export default function ProcessSection() {
             <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
             <div className="relative z-10">
               <h3 className="text-3xl lg:text-4xl font-bold mb-4">
-                Ready to Start Your Growth Journey?
+                Ready to Experience This Process?
               </h3>
               <p className="text-lg lg:text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-                This proven methodology has generated millions in revenue for our clients. Let's see what it can do for your business.
+                From foundation to scale - this proven methodology delivers predictable pipeline growth for B2B companies.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button
@@ -421,7 +295,7 @@ export default function ProcessSection() {
                   className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center text-lg"
                   data-testid="button-start-process"
                 >
-                  Start Your Strategy Session
+                  Start Your Foundation Phase
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </motion.button>
               </div>

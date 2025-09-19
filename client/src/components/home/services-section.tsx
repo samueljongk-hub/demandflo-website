@@ -191,7 +191,7 @@ export default function ServicesSection() {
           </p>
         </motion.div>
 
-        <div className="space-y-24">
+        <div className="space-y-12">
           {processSteps.map((step, index) => (
             <motion.div
               key={step.step}
@@ -202,7 +202,7 @@ export default function ServicesSection() {
               className="relative"
             >              
               <Card className="p-0 overflow-hidden hover:shadow-2xl transition-all duration-500" data-testid={`process-step-${step.step}`}>
-                <div className={`grid lg:grid-cols-2 min-h-[400px] ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
+                <div className={`grid lg:grid-cols-2 min-h-[350px] ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
                   {/* Content Side */}
                   <div className={`p-8 lg:p-12 flex flex-col justify-center space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                     <div className="flex items-center space-x-4 mb-2">
@@ -260,10 +260,10 @@ export default function ServicesSection() {
                   whileInView={{ opacity: 1, scaleY: 1 }}
                   transition={{ duration: 0.8, delay: (index * 0.1) + 0.5 }}
                   viewport={{ once: true }}
-                  className="flex justify-center my-12"
+                  className="flex justify-center my-6"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-1 h-12 bg-gradient-to-b from-primary to-primary/50"></div>
+                    <div className="w-1 h-8 bg-gradient-to-b from-primary to-primary/50"></div>
                     <ArrowDown className="h-6 w-6 text-primary animate-bounce" />
                   </div>
                 </motion.div>
