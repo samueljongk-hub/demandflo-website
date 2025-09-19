@@ -4,9 +4,9 @@ import { Rocket, Play } from "lucide-react";
 
 export default function HeroSection() {
   const stats = [
-    { value: "500+", label: "Clients Served" },
-    { value: "$2M+", label: "Revenue Generated" },
-    { value: "98%", label: "Success Rate" },
+    { value: "500+", label: "Hyper-Personalized Emails Daily" },
+    { value: "70%", label: "Cost Reduction vs SDR" },
+    { value: "4+", label: "Guaranteed Appointments Monthly" },
   ];
 
   return (
@@ -26,12 +26,12 @@ export default function HeroSection() {
             className="space-y-8"
           >
             <h1 className="text-5xl lg:text-7xl font-display font-bold leading-tight" data-testid="text-hero-title">
-              Transform Your Business with{" "}
-              <span className="gradient-text">Premium Lead Generation</span>
+              Fill Your Calendar With{" "}
+              <span className="gradient-text">Guaranteed Sales Conversations</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed" data-testid="text-hero-description">
-              Scale your revenue with our sophisticated lead generation and appointment booking system. 
-              We help businesses achieve consistent $50,000+ monthly growth through data-driven strategies.
+              Start with 4 guaranteed appointments each month and scale as you grow. 
+              500+ hyper-personalized emails daily at 70% cost reduction vs hiring an SDR.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
@@ -40,7 +40,7 @@ export default function HeroSection() {
                 data-testid="button-start-consultation"
               >
                 <Rocket className="mr-2 h-5 w-5" />
-                Start Free Consultation
+                Get Your First Appointments
               </Button>
               <Button
                 size="lg"
@@ -82,7 +82,7 @@ export default function HeroSection() {
               className="bg-white rounded-2xl shadow-2xl p-8 border border-border"
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold">Lead Generation Dashboard</h3>
+                <h3 className="text-xl font-semibold">Outreach Dashboard</h3>
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -91,16 +91,16 @@ export default function HeroSection() {
               </div>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
-                  <span className="text-sm font-medium">Qualified Leads Today</span>
-                  <span className="text-2xl font-bold text-accent">47</span>
+                  <span className="text-sm font-medium">Emails Sent Today</span>
+                  <span className="text-2xl font-bold text-accent">547</span>
                 </div>
                 <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
                   <span className="text-sm font-medium">Appointments Booked</span>
-                  <span className="text-2xl font-bold text-primary">23</span>
+                  <span className="text-2xl font-bold text-primary">12</span>
                 </div>
                 <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
-                  <span className="text-sm font-medium">Conversion Rate</span>
-                  <span className="text-2xl font-bold text-accent">89%</span>
+                  <span className="text-sm font-medium">Response Rate</span>
+                  <span className="text-2xl font-bold text-accent">23%</span>
                 </div>
               </div>
               <div className="mt-6 gradient-primary h-2 rounded-full"></div>

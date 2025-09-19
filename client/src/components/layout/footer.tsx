@@ -35,8 +35,8 @@ export default function Footer() {
               />
             </div>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed max-w-md">
-              Transforming businesses through premium lead generation and appointment booking solutions. 
-              Scale your revenue with proven strategies.
+              Effortless B2B outreach with human-level personalization at scale. 
+              Fill your calendar with guaranteed sales conversations.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (

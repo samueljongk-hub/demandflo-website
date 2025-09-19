@@ -7,36 +7,36 @@ export default function ServicesSection() {
   const services = [
     {
       icon: Target,
-      title: "Targeted Lead Generation",
-      description: "Advanced targeting algorithms to identify and capture high-quality leads that convert into paying customers.",
+      title: "Hyper-Personalized Outreach",
+      description: "500+ uniquely personalized emails daily. Not templates - real personalization that gets responses.",
       features: [
-        "AI-powered lead scoring",
-        "Multi-channel campaigns",
-        "Real-time analytics"
+        "Real hyper-personalization at scale",
+        "High-quality prospect identification", 
+        "Custom messaging for each contact"
       ],
       buttonClass: "bg-primary text-primary-foreground",
       iconClass: "bg-primary"
     },
     {
       icon: Calendar,
-      title: "Smart Appointment Booking",
-      description: "Automated scheduling system that converts leads into booked appointments with intelligent optimization.",
+      title: "Guaranteed Appointments",
+      description: "Start with 4 guaranteed appointments monthly. Scale as you grow with predictable results.",
       features: [
-        "Calendar integration",
-        "Automated reminders",
-        "No-show reduction"
+        "4+ appointments guaranteed monthly",
+        "Month-to-month flexibility",
+        "No contracts required"
       ],
       buttonClass: "bg-accent text-accent-foreground",
       iconClass: "bg-accent"
     },
     {
       icon: BarChart3,
-      title: "Growth Analytics",
-      description: "Comprehensive analytics and reporting to track performance and optimize your sales funnel continuously.",
+      title: "Cost-Effective Solution",
+      description: "70% cost reduction vs hiring an SDR with zero management headaches and predictable results.",
       features: [
-        "ROI tracking",
-        "Performance insights",
-        "Custom reporting"
+        "70% cost reduction vs SDR",
+        "No management required",
+        "Predictable monthly results"
       ],
       buttonClass: "bg-secondary text-secondary-foreground",
       iconClass: "bg-secondary"
@@ -54,10 +54,10 @@ export default function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-display font-bold mb-6" data-testid="text-services-title">
-            Our <span className="gradient-text">Premium Services</span>
+            How <span className="gradient-text">Demand Flo Works</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-services-description">
-            Comprehensive lead generation solutions designed to scale your business and maximize ROI
+            We help you reach your ideal clients with hyper-personalized B2B outreach that actually converts
           </p>
         </motion.div>
 

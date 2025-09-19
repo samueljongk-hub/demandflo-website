@@ -62,11 +62,11 @@ export default function CtaSection() {
           className="mb-12"
         >
           <h2 className="text-4xl lg:text-6xl font-display font-bold mb-6" data-testid="text-cta-title">
-            Ready to <span className="gradient-text">Scale Your Business?</span>
+            Ready to <span className="gradient-text">Fill Your Calendar?</span>
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto" data-testid="text-cta-description">
-            Join hundreds of successful businesses that have transformed their lead generation with DemandFlo. 
-            Book your free consultation today and discover how we can drive your next growth phase.
+            Start with 4 guaranteed appointments monthly. No contracts. No excuses. Just results.
+            No appointments delivered = Full refund. Month to month. Cancel any time.
           </p>
         </motion.div>
 
