@@ -52,34 +52,10 @@ export default function Contact() {
       description: "Schedule a free 30-minute strategy session",
       action: "Schedule Now",
       color: "bg-primary"
-    },
-    {
-      icon: MessageSquare,
-      title: "Live Chat",
-      description: "Chat with our team during business hours",
-      action: "Start Chat",
-      color: "bg-accent"
-    },
-    {
-      icon: Headphones,
-      title: "Phone Support",
-      description: "Speak directly with our experts",
-      action: "Call Now",
-      color: "bg-secondary"
     }
   ];
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Headquarters",
-      details: ["123 Business District", "San Francisco, CA 94105", "United States"]
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      details: ["+1 (555) 123-4567", "Mon-Fri 9AM-6PM PST"]
-    },
     {
       icon: Mail,
       title: "Email",
@@ -117,7 +93,7 @@ export default function Contact() {
       {/* Contact Methods */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="flex justify-center mb-16">
             {contactMethods.map((method, index) => (
               <motion.div
                 key={method.title}
@@ -260,16 +236,6 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Map Placeholder */}
-              <Card className="p-6 bg-muted">
-                <h3 className="font-semibold mb-4">Visit Our Office</h3>
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-primary mx-auto mb-2" />
-                    <p className="text-muted-foreground">Interactive map coming soon</p>
-                  </div>
-                </div>
-              </Card>
             </motion.div>
           </div>
         </div>

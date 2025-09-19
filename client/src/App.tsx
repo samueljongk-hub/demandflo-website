@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
+import RoiCalculator from "@/pages/roi-calculator";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import About from "@/pages/about";
@@ -20,6 +21,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/services" component={Services} />
+        <Route path="/roi-calculator" component={RoiCalculator} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/about" component={About} />

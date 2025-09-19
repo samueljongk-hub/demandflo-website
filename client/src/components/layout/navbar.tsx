@@ -20,6 +20,7 @@ export default function Navbar() {
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
+    { href: "/roi-calculator", label: "ROI Calculator" },
     { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
@@ -39,6 +40,7 @@ export default function Navbar() {
               src="/attached_assets/demand-flo-logo.png" 
               alt="Demand Flo"
               className="h-8 w-auto"
+              style={{ filter: 'brightness(1)', maxHeight: '32px' }}
             />
           </Link>
 

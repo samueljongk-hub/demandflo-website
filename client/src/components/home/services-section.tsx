@@ -20,11 +20,11 @@ export default function ServicesSection() {
     {
       icon: Calendar,
       title: "Guaranteed Appointments",
-      description: "Start with 4 guaranteed appointments monthly. Scale as you grow with predictable results.",
+      description: "Start with a minimum of 4 qualified calls monthly. Most clients scale to much more as results compound.",
       features: [
-        "4+ appointments guaranteed monthly",
-        "Month-to-month flexibility",
-        "No contracts required"
+        "Minimum 4 qualified calls monthly",
+        "Most clients scale significantly higher",
+        "Month-to-month flexibility"
       ],
       buttonClass: "bg-accent text-accent-foreground",
       iconClass: "bg-accent"

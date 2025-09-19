@@ -4,9 +4,9 @@ import { Rocket, Play } from "lucide-react";
 
 export default function HeroSection() {
   const stats = [
-    { value: "500+", label: "Hyper-Personalized Emails Daily" },
+    { value: "1000s", label: "Hyper-Personalized Emails Daily" },
     { value: "70%", label: "Cost Reduction vs SDR" },
-    { value: "4+", label: "Guaranteed Appointments Monthly" },
+    { value: "4+ Min", label: "Qualified Calls Monthly" },
   ];
 
   return (
@@ -30,8 +30,8 @@ export default function HeroSection() {
               <span className="gradient-text">Guaranteed Sales Conversations</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed" data-testid="text-hero-description">
-              Start with 4 guaranteed appointments each month and scale as you grow. 
-              500+ hyper-personalized emails daily at 70% cost reduction vs hiring an SDR.
+              Start with a minimum of 4 qualified calls monthly and scale as you grow. 
+              Thousands of hyper-personalized emails daily at 70% cost reduction vs hiring an SDR.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
@@ -46,10 +46,11 @@ export default function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-lg px-8 py-4"
-                data-testid="button-watch-demo"
+                data-testid="button-see-roi"
+                onClick={() => window.location.href = '/roi-calculator'}
               >
                 <Play className="mr-2 h-5 w-5" />
-                Watch Demo
+                See Your ROI
               </Button>
             </div>
             <div className="flex items-center space-x-8 pt-8">
@@ -82,25 +83,40 @@ export default function HeroSection() {
               className="bg-white rounded-2xl shadow-2xl p-8 border border-border"
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold">Outreach Dashboard</h3>
+                <h3 className="text-xl font-semibold">AI Personalization Engine</h3>
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="w-3 h-3 bg-accent rounded-full"
+                  className="w-3 h-3 bg-green-500 rounded-full"
                 ></motion.div>
               </div>
               <div className="space-y-4">
-                <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
-                  <span className="text-sm font-medium">Emails Sent Today</span>
-                  <span className="text-2xl font-bold text-accent">547</span>
+                <div className="p-4 bg-muted rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium">AI Research Status</span>
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">ACTIVE</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Analyzing LinkedIn posts, company news, industry trends...
+                  </div>
                 </div>
-                <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
-                  <span className="text-sm font-medium">Appointments Booked</span>
-                  <span className="text-2xl font-bold text-primary">12</span>
+                <div className="p-4 bg-muted rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium">Personalization Depth</span>
+                    <span className="text-sm font-bold text-primary">30+ Data Points</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Industry context, pain points, recent activity, role insights
+                  </div>
                 </div>
-                <div className="flex justify-between items-center p-4 bg-muted rounded-lg">
-                  <span className="text-sm font-medium">Response Rate</span>
-                  <span className="text-2xl font-bold text-accent">23%</span>
+                <div className="p-4 bg-muted rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium">Message Quality</span>
+                    <span className="text-sm font-bold text-accent">SDR-Level Writing</span>
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    Each email crafted as if your best SDR spent 30+ minutes researching
+                  </div>
                 </div>
               </div>
               <div className="mt-6 gradient-primary h-2 rounded-full"></div>

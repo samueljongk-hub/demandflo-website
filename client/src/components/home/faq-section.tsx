@@ -8,11 +8,11 @@ export default function FaqSection() {
   const faqs = [
     {
       question: "How quickly can I expect to see results?",
-      answer: "Most clients see initial appointments within 2-4 weeks. We guarantee 4 appointments monthly from the start, with many clients seeing more as we optimize your campaigns."
+      answer: "Most clients see initial appointments within 2-4 weeks. We guarantee a minimum of 4 qualified calls monthly from the start, with most clients scaling to much more as we optimize your campaigns."
     },
     {
-      question: "What if you don't deliver the guaranteed appointments?",
-      answer: "If we don't deliver your guaranteed appointments, you get a full refund. In hundreds of campaigns, we've never failed to deliver. Not once."
+      question: "What if you don't deliver the guaranteed qualified calls?",
+      answer: "If we don't deliver your minimum 4 qualified calls, you get a full refund. In hundreds of campaigns, we've never failed to deliver. Not once."
     },
     {
       question: "How is this different from hiring an SDR?",
@@ -28,7 +28,7 @@ export default function FaqSection() {
     },
     {
       question: "How many emails do you actually send?",
-      answer: "500+ hyper-personalized emails daily. Not templates, not mass blasts - each email is uniquely crafted for the individual recipient."
+      answer: "Thousands of hyper-personalized emails daily. Not templates, not mass blasts - each email is uniquely crafted for the individual recipient using our AI research engine."
     }
   ];
 
