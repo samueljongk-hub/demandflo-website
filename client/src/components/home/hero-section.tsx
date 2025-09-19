@@ -10,9 +10,14 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative pt-16 pb-24 overflow-hidden" data-testid="hero-section">
-      <div className="absolute inset-0 gradient-primary opacity-5"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section className="relative pt-16 pb-24 overflow-hidden animated-bg" data-testid="hero-section">
+      <div className="floating-shapes">
+        <div className="floating-shape"></div>
+        <div className="floating-shape"></div>
+        <div className="floating-shape"></div>
+        <div className="floating-shape"></div>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animated-bg-content">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
