@@ -27,11 +27,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-4 gap-8 mb-12">
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Zap className="h-4 w-4 text-white" />
-              </div>
-              <span className="text-2xl font-bold text-white">DemandFlo</span>
+            <div className="mb-6">
+              <img 
+                src="/attached_assets/demand-flo-logo.png" 
+                alt="Demand Flo"
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-lg text-gray-300 mb-6 leading-relaxed max-w-md">
               Transforming businesses through premium lead generation and appointment booking solutions. 
