@@ -39,10 +39,10 @@ export default function ServicesSection() {
       step: "03",
       title: "Guaranteed Pipeline Growth",
       subtitle: "Predictable Revenue Results",
-      description: "We guarantee a minimum of 4 qualified sales conversations monthly. Most clients scale 2-3x higher as our AI learns your market and optimizes messaging over time.",
+      description: "We guarantee a minimum of 4 qualified sales conversations monthly. Most clients scale 2-5x higher as our AI learns your market and optimizes messaging over time.",
       features: [
         { icon: Target, text: "Minimum 4 qualified calls guaranteed" },
-        { icon: TrendingUp, text: "Most clients scale 2-3x monthly" },
+        { icon: TrendingUp, text: "Most clients scale 2-5x monthly" },
         { icon: Users, text: "Month-to-month flexibility" },
         { icon: BarChart3, text: "70% cost reduction vs SDR" }
       ],
