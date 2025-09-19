@@ -11,24 +11,24 @@
   --card-foreground: hsl(212 15% 26%);
   --popover: hsl(0 0% 100%);
   --popover-foreground: hsl(212 15% 26%);
-  --primary: hsl(243 75% 59%);
+  --primary: hsl(260 100% 65%);
   --primary-foreground: hsl(0 0% 100%);
-  --secondary: hsl(210 100% 15%);
+  --secondary: hsl(260 50% 25%);
   --secondary-foreground: hsl(0 0% 100%);
-  --muted: hsl(210 40% 96%);
-  --muted-foreground: hsl(212 15% 26%);
-  --accent: hsl(133 100% 42%);
+  --muted: hsl(260 20% 97%);
+  --muted-foreground: hsl(260 10% 40%);
+  --accent: hsl(280 100% 70%);
   --accent-foreground: hsl(0 0% 100%);
   --destructive: hsl(0 84% 60%);
   --destructive-foreground: hsl(0 0% 100%);
-  --border: hsl(210 20% 90%);
-  --input: hsl(210 20% 90%);
-  --ring: hsl(243 75% 59%);
+  --border: hsl(260 20% 90%);
+  --input: hsl(260 20% 90%);
+  --ring: hsl(260 100% 65%);
   --radius: 12px;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-display: 'Inter', system-ui, -apple-system, sans-serif;
-  --gradient-primary: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(243 75% 69%) 100%);
-  --gradient-secondary: linear-gradient(135deg, hsl(210 100% 15%) 0%, hsl(210 100% 25%) 100%);
+  --gradient-primary: linear-gradient(135deg, hsl(260 100% 65%) 0%, hsl(280 100% 70%) 100%);
+  --gradient-secondary: linear-gradient(135deg, hsl(260 50% 25%) 0%, hsl(260 50% 35%) 100%);
   --glass-background: rgba(255, 255, 255, 0.9);
   --nav-blur-background: rgba(255, 255, 255, 0.95);
 }
@@ -82,7 +82,7 @@
   }
   
   .gradient-text {
-    background: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(133 100% 42%) 100%);
+    background: linear-gradient(135deg, hsl(260 100% 65%) 0%, hsl(280 100% 70%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -97,7 +97,7 @@
   .nav-blur {
     background: var(--nav-blur-background);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(99, 91, 255, 0.1);
+    border-bottom: 1px solid rgba(130, 87, 255, 0.1);
   }
 
   .hover-lift {
