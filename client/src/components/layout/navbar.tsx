@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Zap } from "lucide-react";
+import demandFloLogo from "@assets/demandflo-logo-200x200_1758686380634.png";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -37,7 +38,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
             <img 
-              src="/attached_assets/Brandmark-make-your-logo-in-minutes (1)_1758680474722.png" 
+              src={demandFloLogo} 
               alt="Demand Flo"
               className="h-8 w-auto"
               style={{ filter: 'brightness(1)', maxHeight: '32px' }}
