@@ -100,6 +100,135 @@ export default function BlogPostPage() {
     }
   };
 
+  const renderBlogContent = (content: string) => {
+    const paragraphs = content.split('\n\n');
+    
+    const isHeader = (text: string) => {
+      const trimmed = text.trim();
+      
+      // Only consider single-line content as headers (no internal newlines)
+      if (trimmed.includes('\n')) return null;
+      
+      // Check for section headers - questions or numbered sections
+      if (trimmed.endsWith('?') && trimmed.length < 100) return 'h2';
+      
+      // Check for numbered sections like "1. Why Personal Relevance Wins"
+      if (/^\d+\.\s/.test(trimmed) && trimmed.length < 100) return 'h2';
+      
+      // Check for subsections like "2.1 Subject Line"
+      if (/^\d+\.\d+\s/.test(trimmed) && trimmed.length < 80) return 'h3';
+      
+      // Check for mistake sections like "Mistake #1:"
+      if (/^Mistake #\d+:/.test(trimmed)) return 'h2';
+      
+      // Check for other common header patterns (single line only)
+      if ((trimmed.startsWith('Why ') || trimmed.startsWith('How ') || trimmed.startsWith('What ') || 
+           trimmed.startsWith('The ') || trimmed.startsWith('Ready ') || trimmed.startsWith('Final ')) 
+          && trimmed.length < 100 && !trimmed.includes('.') && !trimmed.includes(',')) return 'h2';
+      
+      return null;
+    };
+
+    const renderListContent = (text: string) => {
+      const lines = text.split('\n');
+      const items = [];
+      let currentItem = '';
+      
+      for (const line of lines) {
+        if (line.match(/^\d+\.\s/) || line.match(/^-\s/) || line.match(/^•\s/)) {
+          if (currentItem) items.push(currentItem);
+          currentItem = line;
+        } else if (currentItem && line.trim()) {
+          currentItem += ' ' + line.trim();
+        } else if (!currentItem && line.trim()) {
+          currentItem = line;
+        }
+      }
+      if (currentItem) items.push(currentItem);
+      
+      return items;
+    };
+
+    return paragraphs.map((paragraph, index) => {
+      const trimmed = paragraph.trim();
+      const headerType = isHeader(trimmed);
+      
+      if (headerType === 'h2') {
+        return (
+          <h2 key={index} className="text-2xl lg:text-3xl font-bold text-foreground mt-12 mb-6 first:mt-0">
+            {trimmed}
+          </h2>
+        );
+      }
+      
+      if (headerType === 'h3') {
+        return (
+          <h3 key={index} className="text-xl lg:text-2xl font-semibold text-foreground mt-8 mb-4">
+            {trimmed}
+          </h3>
+        );
+      }
+      
+      // Check if this is a list section (contains numbered or bulleted items)
+      if (trimmed.includes('\n') && (trimmed.match(/\n\d+\.\s/) || trimmed.match(/\n-\s/) || trimmed.match(/\n•\s/))) {
+        const lines = trimmed.split('\n');
+        const firstLine = lines[0];
+        
+        // Check if the first line is itself a list item
+        const firstLineIsListItem = firstLine.match(/^\d+\.\s/) || firstLine.match(/^-\s/) || firstLine.match(/^•\s/);
+        
+        let captionLine = '';
+        let listContent = '';
+        
+        if (firstLineIsListItem) {
+          // First line is a list item, so include it in the list
+          listContent = trimmed;
+        } else {
+          // First line is a caption/header for the list
+          captionLine = firstLine;
+          listContent = lines.slice(1).join('\n');
+        }
+        
+        const listItems = renderListContent(listContent);
+        
+        // Determine if this is an ordered or unordered list
+        const isOrderedList = listContent.match(/^\d+\.\s/) || listContent.match(/\n\d+\.\s/);
+        
+        return (
+          <div key={index} className="mb-6">
+            {captionLine && (
+              <p className="text-lg font-semibold text-foreground mb-3">{captionLine}</p>
+            )}
+            {isOrderedList ? (
+              <ol className="list-decimal list-inside space-y-2 ml-4">
+                {listItems.map((item, i) => (
+                  <li key={i} className="text-lg leading-relaxed text-foreground">
+                    {item.replace(/^\d+\.\s/, '')}
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                {listItems.map((item, i) => (
+                  <li key={i} className="text-lg leading-relaxed text-foreground">
+                    {item.replace(/^(-\s|•\s)/, '')}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      }
+      
+      // Regular paragraph
+      return (
+        <p key={index} className="text-lg leading-relaxed text-foreground mb-6">
+          {trimmed}
+        </p>
+      );
+    });
+  };
+
   return (
     <div className="min-h-screen pt-16" data-testid="page-blog-post">
       {/* Back Button */}
@@ -172,12 +301,8 @@ export default function BlogPostPage() {
 
             {/* Article Body */}
             <div className="prose prose-lg max-w-none" data-testid="blog-post-content">
-              <div className="text-foreground leading-relaxed space-y-6">
-                {post.content.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-lg leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
+              <div className="text-foreground leading-relaxed">
+                {renderBlogContent(post.content)}
               </div>
             </div>
 
