@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Zap, Linkedin } from "lucide-react";
+import logoImage from "@assets/demandflo_logo_400x90_1758688046797.png";
 
 export default function Footer() {
   const serviceLinks = [
@@ -27,7 +28,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img 
-                src="/attached_assets/Brandmark-make-your-logo-in-minutes (1)_1758680474722.png" 
+                src={logoImage} 
                 alt="Demand Flo"
                 className="h-10 w-auto"
               />
