@@ -271,38 +271,6 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* Success Metrics CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-24"
-        >
-          <Card className="p-8 lg:p-12 bg-gradient-to-r from-primary via-primary to-accent text-white relative overflow-hidden text-center">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-            <div className="relative z-10">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-4">
-                Ready to Experience This Process?
-              </h3>
-              <p className="text-lg lg:text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-                From foundation to scale - this proven methodology delivers predictable pipeline growth for B2B companies.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => window.open('https://calendly.com/samueljong/30min?month=2025-09', '_blank')}
-                  className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center text-lg cursor-pointer"
-                  data-testid="button-start-process"
-                >
-                  Start Your Foundation Phase
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </motion.button>
-              </div>
-            </div>
-          </Card>
-        </motion.div>
       </div>
     </section>
   );
