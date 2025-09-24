@@ -10,7 +10,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative pt-16 pb-24 overflow-hidden animated-bg" data-testid="hero-section">
+    <section className="relative pt-32 pb-24 overflow-hidden animated-bg" data-testid="hero-section">
       <div className="floating-shapes">
         <div className="floating-shape"></div>
         <div className="floating-shape"></div>
