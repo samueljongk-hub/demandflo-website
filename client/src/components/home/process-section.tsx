@@ -292,7 +292,8 @@ export default function ProcessSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center text-lg"
+                  onClick={() => window.open('https://calendly.com/samueljong/30min?month=2025-09', '_blank')}
+                  className="bg-white text-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center text-lg cursor-pointer"
                   data-testid="button-start-process"
                 >
                   Start Your Foundation Phase
