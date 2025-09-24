@@ -40,7 +40,7 @@ export default function Navbar() {
             <img 
               src={demandFloLogo} 
               alt="Demand Flo"
-              className="h-10 sm:h-11 md:h-10 lg:h-12 w-auto -ml-2 md:-ml-6 -mr-2 md:-mr-6 -mt-1 -mb-1"
+              className="w-32 sm:w-36 md:w-32 lg:w-40 h-auto object-contain -ml-2 md:-ml-6 -mr-2 md:-mr-6"
             />
           </Link>
 
