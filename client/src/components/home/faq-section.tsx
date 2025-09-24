@@ -37,7 +37,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="py-24 bg-muted" data-testid="faq-section">
+    <section className="py-24" data-testid="faq-section">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
