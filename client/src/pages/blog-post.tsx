@@ -5,10 +5,12 @@ import { ArrowLeft, Clock, Calendar, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BlogPost } from "@shared/schema";
+import { useToast } from "@/hooks/use-toast";
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");
   const slug = params?.slug;
+  const { toast } = useToast();
 
   const { data: post, isLoading, error } = useQuery<BlogPost>({
     queryKey: ["/api/blog/posts", slug],
@@ -57,8 +59,44 @@ export default function BlogPostPage() {
         return "text-primary bg-primary/10";
       case "growth":
         return "text-secondary bg-secondary/10";
+      case "email marketing":
+        return "text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/20";
+      case "cold email":
+        return "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/20";
+      case "outbound strategy":
+        return "text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-900/20";
       default:
         return "text-muted-foreground bg-muted";
+    }
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: post?.title,
+      text: post?.excerpt,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        toast({
+          title: "Article shared!",
+          description: "The article has been shared successfully.",
+        });
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast({
+          title: "Link copied!",
+          description: "The article link has been copied to your clipboard.",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Share failed",
+        description: "Unable to share the article. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -120,7 +158,12 @@ export default function BlogPostPage() {
 
               {/* Share Button */}
               <div className="flex items-center gap-4">
-                <Button variant="outline" className="flex items-center gap-2" data-testid="button-share-article">
+                <Button 
+                  variant="outline" 
+                  className="flex items-center gap-2" 
+                  onClick={handleShare}
+                  data-testid="button-share-article"
+                >
                   <Share2 className="h-4 w-4" />
                   Share Article
                 </Button>

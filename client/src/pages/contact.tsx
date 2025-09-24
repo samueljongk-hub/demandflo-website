@@ -139,7 +139,7 @@ export default function Contact() {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={info.title}
@@ -147,16 +147,16 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="flex items-start space-x-4"
+                    className="flex flex-col items-center text-center"
                     data-testid={`contact-info-${info.title.toLowerCase().replace(/\s+/g, '-')}`}
                   >
-                    <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                      <info.icon className="h-5 w-5 text-white" />
+                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
+                      <info.icon className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold mb-1">{info.title}</h3>
+                      <h3 className="font-semibold mb-3 text-lg">{info.title}</h3>
                       {info.details.map((detail, i) => (
-                        <p key={i} className="text-muted-foreground">
+                        <p key={i} className="text-muted-foreground leading-relaxed">
                           {detail}
                         </p>
                       ))}
