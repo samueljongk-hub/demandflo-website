@@ -10,10 +10,10 @@ import { useLocation } from "wouter";
 export default function RoiCalculator() {
   const [, setLocation] = useLocation();
   const [inputs, setInputs] = useState({
-    sdrSalary: 75000,
-    additionalCosts: 25000,
-    currentAppointments: 8,
-    contractValue: 15000,
+    sdrSalary: 100000,
+    additionalCosts: 20000,
+    currentAppointments: 6,
+    contractValue: 20000,
     closeRate: 20
   });
 
@@ -33,10 +33,10 @@ export default function RoiCalculator() {
 
   const reset = () => {
     setInputs({
-      sdrSalary: 75000,
-      additionalCosts: 25000,
-      currentAppointments: 8,
-      contractValue: 15000,
+      sdrSalary: 100000,
+      additionalCosts: 20000,
+      currentAppointments: 6,
+      contractValue: 20000,
       closeRate: 20
     });
     setCalculated(false);

@@ -91,17 +91,6 @@ export default function Footer() {
           <p className="text-gray-400 text-sm" data-testid="text-copyright">
             © 2025 DemandFlo. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors" data-testid="link-terms">
-              Terms of Service
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors" data-testid="link-privacy">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors" data-testid="link-cookies">
-              Cookie Policy
-            </a>
-          </div>
         </div>
       </div>
     </footer>
