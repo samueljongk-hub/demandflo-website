@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Zap, Linkedin } from "lucide-react";
-import logoImage from "attached_assets/demandflo_logo_white.png";
+import logoImage from "@assets/demandflo_logo_white.png";
 
 export default function Footer() {
   const serviceLinks = [
