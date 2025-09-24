@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Target, Calendar, TrendingUp, CheckCircle, ArrowRight, Zap, Users, Settings } from "lucide-react";
+import { Target, Calendar, TrendingUp, CheckCircle, ArrowRight, Zap, Users, Settings, Search, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLocation } from "wouter";
@@ -14,7 +14,6 @@ export default function Plans() {
       description: "Ideal for businesses looking to validate our approach and see results before scaling.",
       calls: "4 qualified calls",
       period: "each month",
-      savings: null,
       features: [
         "Minimum 4 qualified calls guaranteed",
         "Hyper-personalized email sequences",
@@ -24,9 +23,6 @@ export default function Plans() {
         "Month-to-month flexibility"
       ],
       badge: "Best for Testing",
-      gradient: "from-violet-600 via-purple-600 to-indigo-600",
-      bgColor: "bg-violet-50 dark:bg-violet-950/20",
-      borderColor: "border-violet-200 dark:border-violet-800",
       popular: false
     },
     {
@@ -35,19 +31,15 @@ export default function Plans() {
       description: "Perfect for established businesses ready to scale their pipeline with consistent monthly growth.",
       calls: "7 qualified calls",
       period: "each month",
-      savings: "7% cost savings",
       features: [
         "Minimum 7 qualified calls guaranteed",
         "Advanced targeting & segmentation",
         "Multi-sequence campaign management",
         "Priority support & optimization",
-        "No-show replacement included",
-        "Lower per-call cost at steady volume"
+        "Access to our latest tools & features",
+        "No-show replacement included"
       ],
       badge: "Most Popular",
-      gradient: "from-emerald-600 via-green-600 to-teal-600",
-      bgColor: "bg-emerald-50 dark:bg-emerald-950/20",
-      borderColor: "border-emerald-200 dark:border-emerald-800",
       popular: true
     },
     {
@@ -56,28 +48,17 @@ export default function Plans() {
       description: "For high-growth companies that need maximum pipeline volume with the best unit economics.",
       calls: "10+ qualified calls",
       period: "each month", 
-      savings: "14% cost savings",
       features: [
         "Minimum 10+ qualified calls guaranteed",
         "Premium targeting & optimization",
         "Multi-channel campaign orchestration",
         "Dedicated account management",
-        "No-show replacement included",
-        "Best cost efficiency at higher volume"
+        "Early beta access to new features",
+        "Access to our latest tools & features"
       ],
       badge: "Best Value",
-      gradient: "from-orange-600 via-red-600 to-pink-600",
-      bgColor: "bg-orange-50 dark:bg-orange-950/20",
-      borderColor: "border-orange-200 dark:border-orange-800",
       popular: false
     }
-  ];
-
-  const terms = [
-    "Month-to-month commitment for maximum flexibility",
-    "Qualified calls mean ICP fit, clear interest, and attended meetings",
-    "C-suite uplift pricing applies for executive-level meetings",
-    "All plans include comprehensive setup and onboarding"
   ];
 
   return (
@@ -117,13 +98,13 @@ export default function Plans() {
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                    <span className={`px-4 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r ${plan.gradient} shadow-lg`}>
+                    <span className="px-4 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-primary to-accent shadow-lg">
                       {plan.badge}
                     </span>
                   </div>
                 )}
                 
-                <Card className={`h-full p-0 overflow-hidden hover:shadow-2xl transition-all duration-500 ${plan.bgColor} ${plan.borderColor} border-2 ${plan.popular ? 'scale-105' : ''}`} data-testid={`plan-${plan.name.toLowerCase()}`}>
+                <Card className={`h-full p-0 overflow-hidden hover:shadow-2xl transition-all duration-500 bg-card border-2 ${plan.popular ? 'border-primary/30 scale-105 bg-primary/5' : 'border-border'}`} data-testid={`plan-${plan.name.toLowerCase()}`}>
                   <div className="p-8 space-y-6">
                     {/* Plan Header */}
                     <div className="text-center space-y-2">
@@ -132,16 +113,11 @@ export default function Plans() {
                       <p className="text-sm text-muted-foreground leading-relaxed">{plan.description}</p>
                     </div>
 
-                    {/* Calls & Savings */}
+                    {/* Calls */}
                     <div className="text-center py-6 border-y border-border">
                       <div className="space-y-2">
                         <div className="text-4xl font-bold text-foreground">{plan.calls}</div>
                         <div className="text-sm text-muted-foreground">{plan.period}</div>
-                        {plan.savings && (
-                          <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${plan.gradient}`}>
-                            {plan.savings} vs Pilot
-                          </div>
-                        )}
                       </div>
                     </div>
 
@@ -161,43 +137,11 @@ export default function Plans() {
                         </motion.li>
                       ))}
                     </ul>
-
-                    {/* CTA Button */}
-                    <div className="pt-6">
-                      <Button
-                        className={`w-full bg-gradient-to-r ${plan.gradient} text-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl`}
-                        size="lg"
-                        onClick={() => setLocation('/contact')}
-                        data-testid={`button-select-${plan.name.toLowerCase()}`}
-                      >
-                        Start {plan.name} Plan
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </div>
                   </div>
                 </Card>
               </motion.div>
             ))}
           </div>
-
-          {/* Terms */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="bg-muted/50 rounded-2xl p-8"
-          >
-            <h3 className="text-2xl font-bold text-foreground mb-6">Plan Terms & Details</h3>
-            <ul className="space-y-3">
-              {terms.map((term, index) => (
-                <li key={index} className="flex items-start text-sm">
-                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5 mr-3" />
-                  <span className="text-muted-foreground">{term}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
         </div>
       </section>
 
@@ -234,9 +178,9 @@ export default function Plans() {
                 status: "In Development"
               },
               {
-                icon: TrendingUp,
-                title: "Predictive Analytics",
-                description: "AI-powered forecasting that predicts your pipeline health, identifies bottlenecks, and suggests optimization strategies.",
+                icon: Search,
+                title: "Forum Intelligence Automation",
+                description: "AI-powered system that constantly scans Reddit, Quora, and other forums for keywords related to your industry and pain points, then notifies you instantly so you can respond and engage while LLMs prioritize forum content.",
                 status: "Beta Testing"
               }
             ].map((feature, index) => (
@@ -300,14 +244,15 @@ export default function Plans() {
                     <TrendingUp className="ml-2 h-5 w-5" />
                   </Button>
                   <Button
+                    asChild
                     size="lg"
-                    variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary transition-colors font-semibold px-8 py-4"
-                    onClick={() => setLocation('/contact')}
+                    className="bg-white text-primary hover:bg-gray-100 transition-colors font-semibold px-8 py-4"
                     data-testid="button-book-call"
                   >
-                    Book Strategy Call
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                      Get Your First Appointments
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </a>
                   </Button>
                 </div>
               </div>

@@ -29,10 +29,10 @@ export default function About() {
   ];
 
   const stats = [
-    { value: "500+", label: "Clients Served", description: "Businesses transformed across industries" },
-    { value: "$2M+", label: "Revenue Generated", description: "Additional revenue created for our clients" },
-    { value: "98%", label: "Success Rate", description: "Clients achieving their growth targets" },
-    { value: "50+", label: "Team Members", description: "Expert professionals dedicated to your success" }
+    { value: "100%", label: "Client Success Rate", description: "Every client achieves qualified appointment goals" },
+    { value: "4+", label: "Appointments Monthly", description: "Guaranteed qualified calls delivered each month" },
+    { value: "30", label: "Days Average", description: "Time to see consistent appointment flow" },
+    { value: "24/7", label: "Campaign Monitoring", description: "Continuous optimization and performance tracking" }
   ];
 
   const achievements = [

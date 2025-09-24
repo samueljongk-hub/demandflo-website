@@ -59,10 +59,13 @@ export default function Navbar() {
               </Link>
             ))}
             <Button
+              asChild
               className="gradient-primary text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-200"
               data-testid="button-book-consultation"
             >
-              Book Consultation
+              <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                Get Your First Appointments
+              </a>
             </Button>
           </div>
 
@@ -89,10 +92,13 @@ export default function Navbar() {
                     </Link>
                   ))}
                   <Button
+                    asChild
                     className="gradient-primary text-primary-foreground mt-4 w-full"
                     data-testid="button-mobile-book-consultation"
                   >
-                    Book Consultation
+                    <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                      Get Your First Appointments
+                    </a>
                   </Button>
                 </div>
               </SheetContent>

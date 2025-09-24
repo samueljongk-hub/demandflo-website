@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Zap, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Zap, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const serviceLinks = [
@@ -17,9 +17,7 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/demand-flo/", label: "LinkedIn" },
   ];
 
   return (
@@ -90,7 +88,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-600 pt-8 flex flex-col md:flex-row items-center justify-between">
           <p className="text-gray-400 text-sm" data-testid="text-copyright">
-            © 2024 DemandFlo. All rights reserved.
+            © 2025 DemandFlo. All rights reserved.
           </p>
           <div className="flex items-center space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors" data-testid="link-terms">

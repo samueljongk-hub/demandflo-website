@@ -35,12 +35,15 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
+                asChild
                 size="lg"
                 className="gradient-primary text-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl text-lg px-8 py-4"
                 data-testid="button-start-consultation"
               >
-                <Rocket className="mr-2 h-5 w-5" />
-                Get Your First Appointments
+                <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                  <Rocket className="mr-2 h-5 w-5" />
+                  Get Your First Appointments
+                </a>
               </Button>
               <Button
                 size="lg"

@@ -107,8 +107,10 @@ export default function Contact() {
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{method.title}</h3>
                   <p className="text-muted-foreground mb-6">{method.description}</p>
-                  <Button className="w-full" data-testid={`button-${method.action.toLowerCase().replace(/\s+/g, '-')}`}>
-                    {method.action}
+                  <Button asChild className="w-full" data-testid={`button-${method.action.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                      Get Your First Appointments
+                    </a>
                   </Button>
                 </Card>
               </motion.div>
