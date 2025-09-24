@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Zap } from "lucide-react";
-import demandFloLogo from "@assets/demandflo-logo-200x200_1758686380634.png";
+import demandFloLogo from "@assets/demandflo_logo_highres_720x192_1758687602847.png";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -40,8 +40,7 @@ export default function Navbar() {
             <img 
               src={demandFloLogo} 
               alt="Demand Flo"
-              className="h-8 w-auto"
-              style={{ filter: 'brightness(1)', maxHeight: '32px' }}
+              className="h-8 md:h-10 lg:h-12 w-auto"
             />
           </Link>
 
