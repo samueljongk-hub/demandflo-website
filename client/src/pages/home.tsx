@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import HeroSection from "@/components/home/hero-section";
 import ServicesSection from "@/components/home/services-section";
 import ProcessSection from "@/components/home/process-section";
+import ImpactSection from "@/components/home/impact-section";
 import FaqSection from "@/components/home/faq-section";
 import CtaSection from "@/components/home/cta-section";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <ServicesSection />
       <ProcessSection />
+      <ImpactSection />
       <FaqSection />
       <CtaSection />
     </motion.div>
