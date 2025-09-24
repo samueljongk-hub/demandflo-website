@@ -48,11 +48,10 @@ export default function About() {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-5xl lg:text-6xl font-display font-bold mb-6" data-testid="text-about-hero-title">
-              Transforming Businesses with <span className="gradient-text">Premium Lead Generation</span>
+              <span className="gradient-text">Transforming Empty Calendars Into Guaranteed Sales Conversations</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed" data-testid="text-about-hero-description">
-              Since 2018, DemandFlo has been at the forefront of lead generation innovation, helping businesses 
-              scale from startup to enterprise with data-driven strategies and cutting-edge technology.
+              Demand Flo has revolutionized B2B appointment setting, helping businesses scale from startup to enterprise with guaranteed results, hyper-personalized AI outreach, and a promise that's simple: no appointments, no payment.
             </p>
           </motion.div>
         </div>
