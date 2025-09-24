@@ -11,6 +11,7 @@ import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
+import Privacy from "@/pages/privacy";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/blog/:slug" component={BlogPost} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
+        <Route path="/privacy" component={Privacy} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

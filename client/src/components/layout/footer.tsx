@@ -3,17 +3,17 @@ import { Zap, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const serviceLinks = [
-    { href: "/services", label: "Lead Generation" },
-    { href: "/services", label: "Appointment Booking" },
-    { href: "/services", label: "Growth Analytics" },
-    { href: "/services", label: "Campaign Management" },
+    { href: "/services", label: "Hyper-Personalized Outreach" },
+    { href: "/services", label: "AI-Powered Research" },
+    { href: "/services", label: "Qualified Appointment Delivery" },
+    { href: "/services", label: "Forum Intelligence Automation" },
   ];
 
   const companyLinks = [
     { href: "/about", label: "About Us" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
-    { href: "#", label: "Privacy Policy" },
+    { href: "/privacy", label: "Privacy Policy" },
   ];
 
   const socialLinks = [
@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img 
-                src="/attached_assets/demand-flo-logo.png" 
+                src="/attached_assets/Brandmark-make-your-logo-in-minutes (1)_1758680474722.png" 
                 alt="Demand Flo"
                 className="h-10 w-auto"
               />

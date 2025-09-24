@@ -35,13 +35,6 @@ export default function About() {
     { value: "24/7", label: "Campaign Monitoring", description: "Continuous optimization and performance tracking" }
   ];
 
-  const achievements = [
-    "Inc. 5000 Fastest Growing Companies",
-    "Marketing Excellence Award 2024",
-    "Top Lead Generation Agency",
-    "Customer Success Champion",
-    "Innovation in Marketing Technology"
-  ];
 
   return (
     <div className="min-h-screen pt-16" data-testid="page-about">
@@ -99,10 +92,6 @@ export default function About() {
                 <Zap className="h-12 w-12 mb-6" />
                 <h3 className="text-2xl font-semibold mb-4">Why Choose DemandFlo?</h3>
                 <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" />
-                    Proven track record with 500+ successful clients
-                  </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 mr-3 mt-0.5 flex-shrink-0" />
                     Data-driven strategies that deliver measurable ROI
@@ -207,42 +196,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Achievements */}
-      <section className="py-24 bg-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl lg:text-5xl font-display font-bold mb-6" data-testid="text-achievements-title">
-              Awards & <span className="gradient-text">Recognition</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-achievements-description">
-              Industry recognition for our commitment to excellence and innovation
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {achievements.map((achievement, index) => (
-              <motion.div
-                key={achievement}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-background rounded-lg p-6 text-center border border-border"
-                data-testid={`achievement-${achievement.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                <Award className="h-8 w-8 text-accent mx-auto mb-3" />
-                <h3 className="font-semibold">{achievement}</h3>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-24">

@@ -59,12 +59,12 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      details: ["hello@demandflo.co", "Response within 24 hours"]
+      details: ["team@demandflo.co", "Response within 24 hours"]
     },
     {
       icon: Clock,
       title: "Business Hours",
-      details: ["Monday - Friday: 9AM - 6PM", "Saturday: 10AM - 4PM", "Sunday: Closed"]
+      details: ["Monday - Friday: 9AM - 6PM", "Saturday: Closed", "Sunday: Closed"]
     }
   ];
 
@@ -122,87 +122,14 @@ export default function Contact() {
       {/* Main Contact Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Card className="p-8" data-testid="contact-form-card">
-                <h2 className="text-3xl font-display font-bold mb-6">Send Us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6" data-testid="contact-form">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Input
-                      name="firstName"
-                      placeholder="First Name"
-                      required
-                      className="focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                      data-testid="input-first-name"
-                    />
-                    <Input
-                      name="lastName"
-                      placeholder="Last Name"
-                      required
-                      className="focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                      data-testid="input-last-name"
-                    />
-                  </div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Business Email"
-                    required
-                    className="focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                    data-testid="input-email"
-                  />
-                  <Input
-                    name="phone"
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-                    data-testid="input-phone"
-                  />
-                  <Select name="revenueRange">
-                    <SelectTrigger className="focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200" data-testid="select-revenue-range">
-                      <SelectValue placeholder="Current Monthly Revenue" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="0-10k">$0 - $10,000</SelectItem>
-                      <SelectItem value="10k-50k">$10,000 - $50,000</SelectItem>
-                      <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
-                      <SelectItem value="100k-500k">$100,000 - $500,000</SelectItem>
-                      <SelectItem value="500k+">$500,000+</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Textarea
-                    name="message"
-                    placeholder="Tell us about your business goals and how we can help..."
-                    rows={6}
-                    required
-                    className="focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200 resize-none"
-                    data-testid="textarea-message"
-                  />
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full gradient-primary text-white py-3 text-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
-                    data-testid="button-send-message"
-                  >
-                    {isSubmitting ? "Sending Message..." : "Send Message"}
-                  </Button>
-                </form>
-              </Card>
-            </motion.div>
-
+          <div className="max-w-4xl mx-auto">
             {/* Contact Information */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-8 text-center"
             >
               <div>
                 <h2 className="text-3xl font-display font-bold mb-6">Get in Touch</h2>

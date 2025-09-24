@@ -122,37 +122,6 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section className="py-24 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl lg:text-5xl font-display font-bold mb-6" data-testid="text-newsletter-title">
-              Stay <span className="gradient-text">Ahead of the Curve</span>
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed" data-testid="text-newsletter-description">
-              Get weekly insights, strategies, and case studies delivered directly to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <Input
-                placeholder="Enter your email"
-                className="focus:ring-2 focus:ring-ring focus:border-transparent"
-                data-testid="input-newsletter-email"
-              />
-              <Button
-                className="gradient-primary text-white hover:scale-105 transition-all duration-300"
-                data-testid="button-subscribe-newsletter"
-              >
-                Subscribe
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }

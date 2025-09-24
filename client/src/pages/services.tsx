@@ -18,7 +18,6 @@ export default function Plans() {
         "Minimum 4 qualified calls guaranteed",
         "Hyper-personalized email sequences",
         "AI-powered prospect research",
-        "One-time strategic setup included",
         "No-show replacement included",
         "Month-to-month flexibility"
       ],
@@ -34,7 +33,6 @@ export default function Plans() {
       features: [
         "Minimum 7 qualified calls guaranteed",
         "Advanced targeting & segmentation",
-        "Multi-sequence campaign management",
         "Priority support & optimization",
         "Access to our latest tools & features",
         "No-show replacement included"
@@ -51,7 +49,6 @@ export default function Plans() {
       features: [
         "Minimum 10+ qualified calls guaranteed",
         "Premium targeting & optimization",
-        "Multi-channel campaign orchestration",
         "Dedicated account management",
         "Early beta access to new features",
         "Access to our latest tools & features"
