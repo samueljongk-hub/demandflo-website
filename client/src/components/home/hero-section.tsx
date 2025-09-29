@@ -86,7 +86,7 @@ export default function HeroSection() {
               className="bg-white rounded-2xl shadow-2xl p-8 border border-border"
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-semibold">AI Personalization Engine</h3>
+                <h3 className="text-xl font-semibold">Your Calendar Pipeline</h3>
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -96,33 +96,46 @@ export default function HeroSection() {
               <div className="space-y-4">
                 <div className="p-4 bg-muted rounded-lg">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium">AI Research Status</span>
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">ACTIVE</span>
+                    <span className="text-sm font-medium">This Month's Appointments</span>
+                    <span className="text-lg font-bold text-green-600">12 Booked</span>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Analyzing LinkedIn posts, company news, industry trends...
+                    4 minimum guaranteed • 8 bonus appointments
                   </div>
                 </div>
                 <div className="p-4 bg-muted rounded-lg">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium">Personalization Depth</span>
-                    <span className="text-sm font-bold text-primary">30+ Data Points</span>
+                    <span className="text-sm font-medium">Pipeline Value</span>
+                    <span className="text-lg font-bold text-primary">$240K</span>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Industry context, pain points, recent activity, role insights
+                    12 calls × $20K avg contract value
                   </div>
                 </div>
                 <div className="p-4 bg-muted rounded-lg">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-medium">Message Quality</span>
-                    <span className="text-sm font-bold text-accent">SDR-Level Writing</span>
+                    <span className="text-sm font-medium">Next Appointment</span>
+                    <span className="text-sm font-bold text-accent">Tomorrow 2PM</span>
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Each email crafted as if your best SDR spent 30+ minutes researching
+                    CEO of TechCorp • Series B scaling challenges
                   </div>
                 </div>
               </div>
-              <div className="mt-6 gradient-primary h-2 rounded-full"></div>
+              <div className="mt-6">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                  <span>Monthly Goal Progress</span>
+                  <span>12/10 calls (120%)</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <motion.div 
+                    className="gradient-primary h-2 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 2, delay: 0.5 }}
+                  ></motion.div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
