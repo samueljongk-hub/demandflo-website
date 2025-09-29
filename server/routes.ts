@@ -1,120 +1,55 @@
-import type { Express } from "express";
-import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertBlogPostSchema, insertContactSubmissionSchema } from "@shared/schema";
-import { z } from "zod";
+import { db } from "./db";
+import { blogPosts, contactSubmissions } from "@shared/schema";
+import { eq } from "drizzle-orm";
+import type { InsertBlogPost, InsertContactSubmission } from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Blog routes
-  app.get("/api/blog/posts", async (req, res) => {
-    try {
-      const posts = await storage.getPublishedBlogPosts();
-      res.json(posts);
-    } catch (error: any) {
-      res.status(500).json({ message: "Error fetching blog posts: " + error.message });
-    }
-  });
+export const storage = {
+  // Get all published blog posts
+  async getPublishedBlogPosts() {
+    return await db.select().from(blogPosts).where(eq(blogPosts.published, true));
+  },
 
-  app.get("/api/blog/posts/:slug", async (req, res) => {
-    try {
-      const { slug } = req.params;
-      const post = await storage.getBlogPostBySlug(slug);
-      
-      if (!post) {
-        return res.status(404).json({ message: "Blog post not found" });
-      }
-      
-      if (!post.published) {
-        return res.status(404).json({ message: "Blog post not published" });
-      }
+  // Get a single blog post by slug
+  async getBlogPostBySlug(slug: string) {
+    const posts = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return posts[0] || null;
+  },
 
-      res.json(post);
-    } catch (error: any) {
-      res.status(500).json({ message: "Error fetching blog post: " + error.message });
-    }
-  });
+  // Get all blog posts (published and unpublished) - for admin
+  async getAllBlogPosts() {
+    return await db.select().from(blogPosts);
+  },
 
-  app.post("/api/blog/posts", async (req, res) => {
-    try {
-      const validatedData = insertBlogPostSchema.parse(req.body);
-      const post = await storage.createBlogPost(validatedData);
-      res.status(201).json(post);
-    } catch (error: any) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
-      res.status(500).json({ message: "Error creating blog post: " + error.message });
-    }
-  });
+  // Create a new blog post
+  async createBlogPost(data: InsertBlogPost) {
+    const result = await db.insert(blogPosts).values(data).returning();
+    return result[0];
+  },
 
-  // Contact form route
-  app.post("/api/contact", async (req, res) => {
-    try {
-      const validatedData = insertContactSubmissionSchema.parse(req.body);
-      const submission = await storage.createContactSubmission(validatedData);
-      res.status(201).json({ message: "Contact submission received successfully", id: submission.id });
-    } catch (error: any) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
-      res.status(500).json({ message: "Error processing contact submission: " + error.message });
-    }
-  });
+  // Update a blog post
+  async updateBlogPost(id: string, data: Partial<InsertBlogPost>) {
+    const result = await db
+      .update(blogPosts)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return result[0] || null;
+  },
 
-  // Admin routes for blog management
-  app.get("/api/admin/blog/posts", async (req, res) => {
-    try {
-      const posts = await storage.getAllBlogPosts();
-      res.json(posts);
-    } catch (error: any) {
-      res.status(500).json({ message: "Error fetching all blog posts: " + error.message });
-    }
-  });
+  // Delete a blog post
+  async deleteBlogPost(id: string) {
+    const result = await db.delete(blogPosts).where(eq(blogPosts.id, id)).returning();
+    return result.length > 0;
+  },
 
-  app.put("/api/admin/blog/posts/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const validatedData = insertBlogPostSchema.partial().parse(req.body);
-      const updatedPost = await storage.updateBlogPost(id, validatedData);
-      
-      if (!updatedPost) {
-        return res.status(404).json({ message: "Blog post not found" });
-      }
+  // Create a contact submission
+  async createContactSubmission(data: InsertContactSubmission) {
+    const result = await db.insert(contactSubmissions).values(data).returning();
+    return result[0];
+  },
 
-      res.json(updatedPost);
-    } catch (error: any) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
-      res.status(500).json({ message: "Error updating blog post: " + error.message });
-    }
-  });
-
-  app.delete("/api/admin/blog/posts/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const deleted = await storage.deleteBlogPost(id);
-      
-      if (!deleted) {
-        return res.status(404).json({ message: "Blog post not found" });
-      }
-
-      res.json({ message: "Blog post deleted successfully" });
-    } catch (error: any) {
-      res.status(500).json({ message: "Error deleting blog post: " + error.message });
-    }
-  });
-
-  // Contact submissions admin route
-  app.get("/api/admin/contact-submissions", async (req, res) => {
-    try {
-      const submissions = await storage.getAllContactSubmissions();
-      res.json(submissions);
-    } catch (error: any) {
-      res.status(500).json({ message: "Error fetching contact submissions: " + error.message });
-    }
-  });
-
-  const httpServer = createServer(app);
-  return httpServer;
-}
+  // Get all contact submissions - for admin
+  async getAllContactSubmissions() {
+    return await db.select().from(contactSubmissions);
+  },
+};
