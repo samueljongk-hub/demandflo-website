@@ -99,7 +99,7 @@ export default function RoiCalculator() {
               ROI <span className="gradient-text">Impact Calculator</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed" data-testid="roi-calculator-description">
-              Discover exactly how much you could save and how many more qualified calls you'd get by switching from traditional SDRs to our proven system
+              Discover exactly how much you could save and how many more qualified calls you'd get by switching from traditional SDRs to our proven system.
             </p>
           </motion.div>
         </div>
