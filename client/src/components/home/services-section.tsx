@@ -138,7 +138,7 @@ export default function ServicesSection() {
           animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+          <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg text-center">
             <span className="text-xs opacity-90">Analyzing</span>
             <span className="block text-lg">30+ Data Points</span>
           </div>
