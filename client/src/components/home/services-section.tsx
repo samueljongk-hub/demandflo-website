@@ -51,126 +51,89 @@ export default function ServicesSection() {
     }
   ];
 
+  // Simplified animated components (like PlaymakerML)
+  const SearchRadar = () => (
+    <div className="relative w-40 h-40 mx-auto">
+      <motion.div
+        className="absolute inset-0 rounded-full border-4 border-purple-300/40"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute inset-3 rounded-full border-4 border-purple-400/60"
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Database className="h-12 w-12 text-purple-600" />
+      </div>
+      <motion.div
+        className="absolute top-0 left-1/2 w-0.5 h-20 bg-purple-500 origin-bottom transform -translate-x-1/2"
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+      />
+      <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+        30+ Points
+      </div>
+    </div>
+  );
+
+  const EmailAnimation = () => (
+    <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
+      <motion.div
+        className="w-24 h-20 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-lg shadow-lg flex items-center justify-center"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <MessageSquare className="h-10 w-10 text-white" />
+      </motion.div>
+      <motion.div
+        className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold"
+        animate={{ scale: [0, 1, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
+      >
+        ✓
+      </motion.div>
+      <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+        100% Personal
+      </div>
+    </div>
+  );
+
+  const ResultsAnimation = () => (
+    <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
+      <motion.div
+        className="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg shadow-lg flex items-center justify-center"
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        <TrendingUp className="h-10 w-10 text-white" />
+      </motion.div>
+      <motion.div
+        className="absolute -top-1 -right-1 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
+      >
+        4+
+      </motion.div>
+      <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+        Guaranteed
+      </div>
+    </div>
+  );
+
   // Component to render different visualizations based on step type
   const renderVisualization = (type: string, gradient: string) => {
-    const baseClasses = "relative w-full h-64 rounded-2xl overflow-hidden";
-    
     if (type === "research") {
-      return (
-        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white`} data-testid="viz-research">
-          <div className="relative z-10 h-full flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium opacity-80">Analyzing Prospect</span>
-                <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="bg-white/20 rounded-lg p-3">
-                  <div className="text-sm font-medium">LinkedIn Activity</div>
-                  <div className="text-xs opacity-80">Recent posts about scaling challenges</div>
-                </div>
-                <div className="bg-white/20 rounded-lg p-3">
-                  <div className="text-sm font-medium">Company News</div>
-                  <div className="text-xs opacity-80">Series B funding announcement</div>
-                </div>
-                <div className="bg-white/20 rounded-lg p-3">
-                  <div className="text-sm font-medium">Pain Points</div>
-                  <div className="text-xs opacity-80">Lead generation bottlenecks</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-2xl font-bold">30+</div>
-              <div className="text-sm opacity-80">Data Points Analyzed</div>
-            </div>
-          </div>
-        </div>
-      );
+      return <SearchRadar />;
     }
     
     if (type === "personalization") {
-      return (
-        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white relative`} data-testid="viz-personalization">
-          <div className="absolute top-4 right-4">
-            <Zap className="h-6 w-6 animate-pulse" />
-          </div>
-          
-          <div className="space-y-4">
-            <div className="bg-white/20 rounded-lg p-4">
-              <div className="text-sm font-medium mb-2">Email Being Crafted:</div>
-              <div className="text-xs opacity-90 leading-relaxed">
-                "Hi Sarah, I noticed your recent LinkedIn post about the challenges of scaling your sales team at TechCorp. 
-                Given your Series B announcement..."
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white/15 rounded-lg p-3">
-                <div className="text-xs font-medium">Tone</div>
-                <div className="text-xs opacity-80">Professional</div>
-              </div>
-              <div className="bg-white/15 rounded-lg p-3">
-                <div className="text-xs font-medium">Context</div>
-                <div className="text-xs opacity-80">Scaling pain</div>
-              </div>
-            </div>
-            
-            <div className="text-center pt-2">
-              <div className="text-lg font-bold">100%</div>
-              <div className="text-xs opacity-80">Personalized</div>
-            </div>
-          </div>
-        </div>
-      );
+      return <EmailAnimation />;
     }
     
     // results visualization
-    return (
-      <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white`} data-testid="viz-results">
-        <div className="h-full flex flex-col justify-between">
-          <div>
-            <div className="text-sm font-medium opacity-80 mb-4">Monthly Results</div>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-sm">Qualified Calls</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-white/30 rounded-full">
-                    <div className="w-12 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <span className="text-sm font-bold">12</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-sm">Response Rate</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-16 h-2 bg-white/30 rounded-full">
-                    <div className="w-10 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <span className="text-sm font-bold">8.5%</span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-sm">Cost vs SDR</span>
-                <span className="text-sm font-bold">-70%</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center pt-4 border-t border-white/20">
-            <div className="text-2xl font-bold">4+</div>
-            <div className="text-xs opacity-80">Guaranteed Monthly</div>
-          </div>
-        </div>
-      </div>
-    );
+    return <ResultsAnimation />;
   };
 
   return (
