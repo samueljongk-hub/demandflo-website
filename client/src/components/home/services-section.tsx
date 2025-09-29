@@ -51,32 +51,113 @@ export default function ServicesSection() {
     }
   ];
 
-  // Simplified animated components (like PlaymakerML)
-  const SearchRadar = () => (
-    <div className="relative w-40 h-40 mx-auto">
-      <motion.div
-        className="absolute inset-0 rounded-full border-4 border-purple-300/40"
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute inset-3 rounded-full border-4 border-purple-400/60"
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Database className="h-12 w-12 text-purple-600" />
+  // AI Data Scanning Radar - shows actual data point discovery
+  const SearchRadar = () => {
+    const dataPoints = [
+      { label: "LinkedIn", angle: 0, delay: 0 },
+      { label: "Company News", angle: 45, delay: 0.3 },
+      { label: "Industry Trends", angle: 90, delay: 0.6 },
+      { label: "Pain Points", angle: 135, delay: 0.9 },
+      { label: "Recent Activity", angle: 180, delay: 1.2 },
+      { label: "Role Insights", angle: 225, delay: 1.5 },
+      { label: "Behavior Patterns", angle: 270, delay: 1.8 },
+      { label: "Context Signals", angle: 315, delay: 2.1 }
+    ];
+
+    return (
+      <div className="relative w-80 h-80 mx-auto">
+        {/* Outer scanning rings */}
+        <motion.div
+          className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-violet-400/30 to-purple-400/30"
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute inset-4 rounded-full border-2 border-violet-400/50"
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+        />
+        <motion.div
+          className="absolute inset-8 rounded-full border-2 border-purple-500/70"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+        />
+
+        {/* Central AI brain icon */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            className="w-16 h-16 bg-gradient-to-br from-violet-600 to-purple-700 rounded-xl shadow-lg flex items-center justify-center"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <Database className="h-8 w-8 text-white" />
+          </motion.div>
+        </div>
+
+        {/* Rotating radar sweep */}
+        <motion.div
+          className="absolute top-0 left-1/2 w-1 h-40 bg-gradient-to-t from-violet-500 via-purple-400 to-transparent origin-bottom transform -translate-x-1/2"
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          style={{ 
+            background: "linear-gradient(to top, rgba(139, 92, 246, 0.8), rgba(147, 51, 234, 0.4), transparent)",
+            filter: "blur(1px)"
+          }}
+        />
+
+        {/* Data points that light up as radar sweeps */}
+        {dataPoints.map((point, index) => {
+          const radius = 120;
+          const x = Math.cos((point.angle - 90) * Math.PI / 180) * radius;
+          const y = Math.sin((point.angle - 90) * Math.PI / 180) * radius;
+          
+          return (
+            <motion.div
+              key={point.label}
+              className="absolute w-3 h-3 bg-violet-500 rounded-full shadow-lg"
+              style={{
+                left: `calc(50% + ${x}px - 6px)`,
+                top: `calc(50% + ${y}px - 6px)`,
+              }}
+              animate={{
+                scale: [0.5, 1.2, 0.5],
+                opacity: [0.3, 1, 0.3],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: (index * 0.5) % 4,
+              }}
+            />
+          );
+        })}
+
+        {/* Data discovery indicators */}
+        <motion.div
+          className="absolute -bottom-6 left-1/2 transform -translate-x-1/2"
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+            <span className="text-xs opacity-90">Analyzing</span>
+            <span className="block text-lg">30+ Data Points</span>
+          </div>
+        </motion.div>
+
+        {/* Scanning status indicator */}
+        <motion.div
+          className="absolute -top-6 left-1/2 transform -translate-x-1/2"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <div className="flex items-center space-x-2 bg-green-500/20 border border-green-500/50 rounded-full px-3 py-1">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-xs font-medium text-green-700 dark:text-green-400">AI ACTIVE</span>
+          </div>
+        </motion.div>
       </div>
-      <motion.div
-        className="absolute top-0 left-1/2 w-0.5 h-20 bg-purple-500 origin-bottom transform -translate-x-1/2"
-        animate={{ rotate: [0, 360] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-      />
-      <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-        30+ Points
-      </div>
-    </div>
-  );
+    );
+  };
 
   const EmailAnimation = () => (
     <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
