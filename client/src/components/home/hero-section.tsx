@@ -46,14 +46,16 @@ export default function HeroSection() {
                 </a>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 text-lg px-8 py-4"
                 data-testid="button-see-roi"
-                onClick={() => window.location.href = '/roi-calculator'}
               >
-                <Play className="mr-2 h-5 w-5" />
-                See Your ROI
+                <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                  <Play className="mr-2 h-5 w-5" />
+                  See Your ROI
+                </a>
               </Button>
             </div>
             <div className="flex items-center space-x-8 pt-8">
