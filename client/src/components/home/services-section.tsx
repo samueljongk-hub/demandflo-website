@@ -113,67 +113,100 @@ export default function ServicesSection() {
     ];
 
     return (
-      <div className="relative w-80 h-80 mx-auto">
-        {/* Outer scanning rings */}
+      <div className="relative w-96 h-96 mx-auto">
+        {/* Outer scanning rings with purple gradients */}
         <motion.div
-          className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-violet-400/30 to-purple-400/30"
+          className="absolute inset-0 rounded-full border-2"
+          style={{
+            borderImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.3), rgba(147, 51, 234, 0.3)) 1"
+          }}
           animate={{ scale: [1, 1.15, 1] }}
           transition={{ duration: 3, repeat: Infinity }}
         />
         <motion.div
-          className="absolute inset-4 rounded-full border-2 border-violet-400/50"
+          className="absolute inset-6 rounded-full border-2"
+          style={{
+            borderImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.5), rgba(147, 51, 234, 0.5)) 1"
+          }}
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 3, repeat: Infinity, delay: 1 }}
         />
         <motion.div
-          className="absolute inset-8 rounded-full border-2 border-purple-500/70"
+          className="absolute inset-12 rounded-full border-2"
+          style={{
+            borderImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.7), rgba(147, 51, 234, 0.7)) 1"
+          }}
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 3, repeat: Infinity, delay: 2 }}
         />
 
-        {/* Central AI brain icon */}
+        {/* Central AI brain icon with gradient */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            className="w-16 h-16 bg-gradient-to-br from-violet-600 to-purple-700 rounded-xl shadow-lg flex items-center justify-center"
+            className="w-20 h-20 rounded-2xl shadow-2xl flex items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
+            }}
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <Database className="h-8 w-8 text-white" />
+            <Database className="h-10 w-10 text-white" />
           </motion.div>
         </div>
 
-        {/* Rotating radar sweep */}
+        {/* Rotating radar sweep with gradient */}
         <motion.div
-          className="absolute top-0 left-1/2 w-1 h-40 bg-gradient-to-t from-violet-500 via-purple-400 to-transparent origin-bottom transform -translate-x-1/2"
+          className="absolute top-0 left-1/2 w-1 h-48 origin-bottom transform -translate-x-1/2"
           animate={{ rotate: [0, 360] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
           style={{ 
-            background: "linear-gradient(to top, rgba(139, 92, 246, 0.8), rgba(147, 51, 234, 0.4), transparent)",
+            background: "linear-gradient(to top, rgba(139, 92, 246, 0.9), rgba(147, 51, 234, 0.6), rgba(168, 85, 247, 0.3), transparent)",
             filter: "blur(1px)"
           }}
         />
 
-        {/* Data points with dynamic labels */}
+        {/* Data points with labels positioned outside radar */}
         {dataPoints.map((point, index) => {
-          const radius = 120;
-          const x = Math.cos((point.angle - 90) * Math.PI / 180) * radius;
-          const y = Math.sin((point.angle - 90) * Math.PI / 180) * radius;
+          const innerRadius = 140; // Position for pulse dots
+          const outerRadius = 180; // Position for labels (outside radar)
+          
+          const innerX = Math.cos((point.angle - 90) * Math.PI / 180) * innerRadius;
+          const innerY = Math.sin((point.angle - 90) * Math.PI / 180) * innerRadius;
+          
+          const outerX = Math.cos((point.angle - 90) * Math.PI / 180) * outerRadius;
+          const outerY = Math.sin((point.angle - 90) * Math.PI / 180) * outerRadius;
+          
+          // Smart label positioning to prevent overlap
+          let labelAlign = "center";
+          let labelOffset = { x: 0, y: 0 };
+          
+          if (point.angle >= 315 || point.angle < 45) { // Right side
+            labelAlign = "left";
+            labelOffset.x = 10;
+          } else if (point.angle >= 135 && point.angle < 225) { // Left side
+            labelAlign = "right";
+            labelOffset.x = -10;
+          } else if (point.angle >= 45 && point.angle < 135) { // Bottom
+            labelAlign = "center";
+            labelOffset.y = 10;
+          } else { // Top
+            labelAlign = "center";
+            labelOffset.y = -10;
+          }
           
           return (
-            <motion.div
-              key={point.label}
-              className="absolute"
-              style={{
-                left: `calc(50% + ${x}px)`,
-                top: `calc(50% + ${y}px)`,
-              }}
-            >
-              {/* Data point pulse */}
+            <div key={point.label}>
+              {/* Data point pulse on radar edge */}
               <motion.div
-                className="absolute w-3 h-3 bg-violet-500 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute w-4 h-4 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
+                style={{
+                  left: `calc(50% + ${innerX}px)`,
+                  top: `calc(50% + ${innerY}px)`,
+                  background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1))"
+                }}
                 animate={{
-                  scale: [0.5, 1.5, 0.5],
-                  opacity: [0.3, 1, 0.3],
+                  scale: [0.5, 1.3, 0.5],
+                  opacity: [0.4, 1, 0.4],
                 }}
                 transition={{
                   duration: 8,
@@ -182,14 +215,20 @@ export default function ServicesSection() {
                 }}
               />
               
-              {/* Dynamic label that appears when discovered */}
+              {/* Label positioned outside radar */}
               <motion.div
-                className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute"
+                style={{
+                  left: `calc(50% + ${outerX + labelOffset.x}px)`,
+                  top: `calc(50% + ${outerY + labelOffset.y}px)`,
+                  transform: labelAlign === "left" ? "translateY(-50%)" : 
+                            labelAlign === "right" ? "translate(-100%, -50%)" : 
+                            "translate(-50%, -50%)"
+                }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
                   opacity: [0, 1, 1, 0],
                   scale: [0.8, 1, 1, 0.8],
-                  y: [0, -20, -20, 0],
                 }}
                 transition={{
                   duration: 8,
@@ -198,23 +237,44 @@ export default function ServicesSection() {
                   times: [0, 0.1, 0.8, 1]
                 }}
               >
-                <div className="bg-white/95 backdrop-blur-sm border border-violet-200 rounded-lg p-2 shadow-lg min-w-[140px]">
-                  <div className="text-xs font-bold text-violet-700">{point.label}</div>
-                  <div className="text-xs text-gray-600">{point.detail}</div>
-                  <div className="text-xs text-violet-500 font-medium mt-1">{point.category}</div>
+                <div 
+                  className="backdrop-blur-sm border rounded-lg p-2 shadow-lg min-w-[120px] max-w-[140px]"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9))",
+                    borderColor: "rgba(139, 92, 246, 0.3)"
+                  }}
+                >
+                  <div 
+                    className="text-xs font-bold mb-1"
+                    style={{ color: "rgba(139, 92, 246, 1)" }}
+                  >
+                    {point.label}
+                  </div>
+                  <div className="text-xs text-gray-600 mb-1">{point.detail}</div>
+                  <div 
+                    className="text-xs font-medium"
+                    style={{ color: "rgba(147, 51, 234, 0.8)" }}
+                  >
+                    {point.category}
+                  </div>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           );
         })}
 
-        {/* Live discovery feed */}
+        {/* Live discovery feed - moved further down */}
         <motion.div
-          className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute -bottom-16 left-1/2 transform -translate-x-1/2"
           animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg text-center min-w-[200px]">
+          <div 
+            className="text-white px-6 py-3 rounded-lg text-sm font-bold shadow-lg text-center min-w-[220px]"
+            style={{
+              background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
+            }}
+          >
             <div className="text-xs opacity-90 mb-1">Live Intelligence Gathering</div>
             <div className="text-lg">30+ Data Points</div>
             <div className="text-xs opacity-75 mt-1">Per Prospect Analysis</div>
@@ -223,13 +283,20 @@ export default function ServicesSection() {
 
         {/* Central discovery status */}
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-6 mt-12"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-7 mt-16"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 3, repeat: Infinity }}
         >
-          <div className="bg-white/90 backdrop-blur-sm border border-violet-200 rounded-md px-2 py-1 text-center shadow-sm">
+          <div 
+            className="backdrop-blur-sm border rounded-md px-3 py-1 text-center shadow-lg"
+            style={{
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9))",
+              borderColor: "rgba(139, 92, 246, 0.3)"
+            }}
+          >
             <motion.div
-              className="text-xs font-medium text-violet-700"
+              className="text-xs font-medium"
+              style={{ color: "rgba(139, 92, 246, 1)" }}
               animate={{
                 opacity: [0, 1, 1, 0],
               }}
@@ -246,13 +313,27 @@ export default function ServicesSection() {
 
         {/* Scanning status indicator */}
         <motion.div
-          className="absolute -top-6 left-1/2 transform -translate-x-1/2"
+          className="absolute -top-8 left-1/2 transform -translate-x-1/2"
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
-          <div className="flex items-center space-x-2 bg-green-500/20 border border-green-500/50 rounded-full px-3 py-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-medium text-green-700 dark:text-green-400">AI ACTIVE</span>
+          <div 
+            className="flex items-center space-x-2 border rounded-full px-4 py-2"
+            style={{
+              background: "linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 163, 74, 0.1))",
+              borderColor: "rgba(34, 197, 94, 0.3)"
+            }}
+          >
+            <div 
+              className="w-2 h-2 rounded-full animate-pulse"
+              style={{ background: "rgba(34, 197, 94, 1)" }}
+            ></div>
+            <span 
+              className="text-xs font-medium"
+              style={{ color: "rgba(34, 197, 94, 1)" }}
+            >
+              AI ACTIVE
+            </span>
           </div>
         </motion.div>
       </div>
