@@ -1,276 +1,162 @@
 import { motion } from "framer-motion";
-import { Target, Users, TrendingUp, CheckCircle, ArrowRight, BarChart3, Mail, Zap, Settings, Clock, Rocket, CalendarCheck } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Users, Mail, Calendar, Search } from "lucide-react";
 
 export default function ProcessSection() {
-  const phases = [
+  const steps = [
     {
-      phase: "Phase 1",
-      title: "Foundation & Setup",
-      subtitle: "Strategic Preparation",
-      description: "We establish the groundwork for your success by aligning strategy, configuring systems, and preparing personalized outreach sequences that resonate with your ideal prospects.",
-      keyElements: [
-        { icon: Target, text: "ICP alignment & messaging strategy" },
-        { icon: Settings, text: "Systems configuration & optimization" },
-        { icon: Users, text: "Prospect research & list building" },
-        { icon: Mail, text: "Personalized sequence creation" }
-      ],
-      duration: "Initial weeks",
-      outcome: "Ready-to-launch campaign infrastructure",
-      gradient: "from-violet-600 via-purple-600 to-indigo-600",
-      bgColor: "bg-violet-50 dark:bg-violet-950/20"
+      title: "Find Your Ideal Customers",
+      description: "We identify and research the perfect prospects for your business.",
+      icon: Search,
+      gradient: "from-blue-500 to-indigo-600"
     },
     {
-      phase: "Phase 2", 
-      title: "Launch & Optimization",
-      subtitle: "Active Growth Engine",
-      description: "Your campaigns go live with continuous monitoring, optimization, and call booking to ensure consistent pipeline growth and maximum ROI from day one.",
-      keyElements: [
-        { icon: Rocket, text: "Live campaign deployment" },
-        { icon: CalendarCheck, text: "Qualified call booking & handoff" },
-        { icon: BarChart3, text: "Performance tracking & refinement" },
-        { icon: TrendingUp, text: "Continuous optimization & scaling" }
-      ],
-      duration: "Ongoing",
-      outcome: "Predictable pipeline with a minimum of 4 monthly calls",
-      gradient: "from-emerald-600 via-green-600 to-teal-600",
-      bgColor: "bg-emerald-50 dark:bg-emerald-950/20"
+      title: "Send Personal Messages",
+      description: "Each email is crafted specifically for that person, like your best salesperson wrote it.",
+      icon: Mail,
+      gradient: "from-purple-500 to-pink-600"
+    },
+    {
+      title: "Book Qualified Calls",
+      description: "Interested prospects schedule directly on your calendar. You get a minimum of 4 calls monthly.",
+      icon: Calendar,
+      gradient: "from-green-500 to-emerald-600"
     }
   ];
 
-  // Render timeline visualization for each phase
-  const renderPhaseVisualization = (phaseIndex: number, gradient: string) => {
-    const baseClasses = "relative w-full h-56 rounded-2xl overflow-hidden";
-    
-    if (phaseIndex === 0) {
-      // Foundation Phase
-      return (
-        <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white`} data-testid="viz-foundation">
-          <div className="h-full flex flex-col justify-between">
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium opacity-90">Foundation Setup</span>
-                <Clock className="h-4 w-4 animate-pulse" />
-              </div>
-              
-              <div className="space-y-2">
-                {[
-                  { label: "Strategy Alignment", status: "Complete" },
-                  { label: "System Configuration", status: "Complete" },
-                  { label: "List Building", status: "Complete" },
-                  { label: "Message Creation", status: "Ready" }
-                ].map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    className="bg-white/20 rounded p-2 flex items-center justify-between"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.15 }}
-                    viewport={{ once: true }}
-                  >
-                    <span className="text-xs font-medium">{item.label}</span>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-3 w-3 text-green-300" />
-                      <span className="text-xs opacity-80">{item.status}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="text-center pt-3 border-t border-white/20">
-              <div className="text-lg font-bold">Ready to Launch</div>
-              <div className="text-xs opacity-80">Foundation Complete</div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    
-    // Growth Phase
-    return (
-      <div className={`${baseClasses} bg-gradient-to-br ${gradient} p-6 text-white relative`} data-testid="viz-growth">
-        <div className="absolute top-4 right-4">
-          <Rocket className="h-5 w-5 animate-bounce" style={{animationDuration: '2s'}} />
-        </div>
-        
-        <div className="h-full flex flex-col justify-between">
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium opacity-90">Live Campaign</span>
-              <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-xs opacity-80">Active</span>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-2">
-              <div className="bg-white/20 rounded p-2 text-center">
-                <div className="text-lg font-bold">12</div>
-                <div className="text-xs opacity-80">Calls This Month</div>
-              </div>
-              <div className="bg-white/20 rounded p-2 text-center">
-                <div className="text-lg font-bold">8.5%</div>
-                <div className="text-xs opacity-80">Response Rate</div>
-              </div>
-            </div>
-            
-            <div className="bg-white/20 rounded p-2">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-xs">Pipeline Growth</span>
-                <span className="text-xs font-bold">+240%</span>
-              </div>
-              <div className="w-full bg-white/30 rounded-full h-1.5">
-                <motion.div 
-                  className="bg-green-400 h-1.5 rounded-full"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "85%" }}
-                  transition={{ duration: 2, delay: 0.5 }}
-                  viewport={{ once: true }}
-                ></motion.div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center pt-3 border-t border-white/20">
-            <div className="text-lg font-bold">Scaling Success</div>
-            <div className="text-xs opacity-80">Ongoing Optimization</div>
-          </div>
-        </div>
+  // Animated visual components
+  const SearchRadar = () => (
+    <div className="relative w-32 h-32 mx-auto">
+      <motion.div
+        className="absolute inset-0 rounded-full border-4 border-blue-500/30"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute inset-2 rounded-full border-4 border-blue-400/50"
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Search className="h-8 w-8 text-blue-600" />
       </div>
-    );
-  };
+      <motion.div
+        className="absolute top-0 left-1/2 w-0.5 h-16 bg-blue-500 origin-bottom transform -translate-x-1/2"
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+      />
+    </div>
+  );
+
+  const EmailAnimation = () => (
+    <div className="relative w-32 h-32 mx-auto flex items-center justify-center">
+      <motion.div
+        className="w-20 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg shadow-lg flex items-center justify-center"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        <Mail className="h-8 w-8 text-white" />
+      </motion.div>
+      <motion.div
+        className="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full"
+        animate={{ scale: [0, 1, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
+      />
+    </div>
+  );
+
+  const CalendarAnimation = () => (
+    <div className="relative w-32 h-32 mx-auto flex items-center justify-center">
+      <motion.div
+        className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg shadow-lg flex items-center justify-center"
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        <Calendar className="h-8 w-8 text-white" />
+      </motion.div>
+      <motion.div
+        className="absolute -top-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
+      >
+        4+
+      </motion.div>
+    </div>
+  );
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden" data-testid="process-section">
+    <section className="py-24 bg-gradient-to-b from-background to-muted/30" data-testid="process-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <h2 className="text-4xl lg:text-5xl font-display font-bold mb-6" data-testid="text-process-title">
-            Our <span className="gradient-text">Proven Process</span>
+            How <span className="gradient-text">DemandFlo Works</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed" data-testid="text-process-description">
-            A strategic 2-phase approach that transforms your outreach from generic messaging into a predictable pipeline-building system
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed" data-testid="text-process-description">
+            Three simple steps to fill your calendar with qualified sales conversations
           </p>
         </motion.div>
 
-        {/* Timeline Connector */}
-        <div className="relative mb-16">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-violet-500 via-purple-500 to-emerald-500 opacity-20"></div>
-          
-          <div className="space-y-24">
-            {phases.map((phase, index) => (
-              <motion.div
-                key={phase.phase}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                {/* Phase Timeline Marker */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-4 z-10">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                    viewport={{ once: true }}
-                    className={`w-16 h-16 rounded-full bg-gradient-to-r ${phase.gradient} flex items-center justify-center text-white font-bold text-lg shadow-xl border-4 border-background`}
-                  >
-                    {index + 1}
-                  </motion.div>
-                </div>
+        <div className="grid lg:grid-cols-3 gap-12">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="text-center group"
+              data-testid={`step-${index + 1}`}
+            >
+              <div className="mb-8">
+                {index === 0 && <SearchRadar />}
+                {index === 1 && <EmailAnimation />}
+                {index === 2 && <CalendarAnimation />}
+              </div>
+              
+              <div className="space-y-4">
+                <h3 className="text-2xl lg:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  {step.title}
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
 
-                <Card className={`p-0 overflow-hidden hover:shadow-2xl transition-all duration-500 ${phase.bgColor} border-2 border-primary/10`} data-testid={`phase-${index + 1}`}>
-                  <div className="grid lg:grid-cols-5 min-h-[450px]">
-                    {/* Content Section */}
-                    <div className="lg:col-span-3 p-8 lg:p-12 flex flex-col justify-center space-y-6">
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-3">
-                          <span className={`px-3 py-1 rounded-full text-sm font-semibold bg-gradient-to-r ${phase.gradient} text-white`}>
-                            {phase.phase}
-                          </span>
-                          <span className="text-sm text-muted-foreground font-medium">{phase.duration}</span>
-                        </div>
-                        <h3 className="text-3xl lg:text-4xl font-bold text-foreground">{phase.title}</h3>
-                        <p className="text-xl text-primary font-semibold">{phase.subtitle}</p>
-                      </div>
-                      
-                      <p className="text-lg text-muted-foreground leading-relaxed">
-                        {phase.description}
-                      </p>
-
-                      <div className="space-y-4">
-                        <h4 className="font-semibold text-foreground text-lg">Key Focus Areas:</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {phase.keyElements.map((element, elementIndex) => (
-                            <motion.div
-                              key={elementIndex}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.5, delay: (index * 0.2) + (elementIndex * 0.1) + 0.4 }}
-                              viewport={{ once: true }}
-                              className="flex items-start space-x-3 p-4 rounded-lg bg-background/70 hover:bg-background/90 transition-colors border border-primary/10"
-                              data-testid={`element-${index + 1}-${elementIndex}`}
-                            >
-                              <element.icon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                              <span className="text-sm font-medium text-foreground">{element.text}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className={`flex items-start space-x-4 p-6 bg-gradient-to-r ${phase.gradient} text-white rounded-lg shadow-lg`}>
-                        <CheckCircle className="h-6 w-6 flex-shrink-0 mt-1" />
-                        <div>
-                          <div className="font-bold text-lg mb-1">Phase Outcome:</div>
-                          <div className="text-sm opacity-90">{phase.outcome}</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Visualization Section */}
-                    <div className="lg:col-span-2 p-8 lg:p-12 flex items-center justify-center bg-gradient-to-br from-muted/30 to-muted/10">
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: (index * 0.2) + 0.3 }}
-                        viewport={{ once: true }}
-                        className="w-full max-w-sm"
-                      >
-                        {renderPhaseVisualization(index, phase.gradient)}
-                      </motion.div>
-                    </div>
-                  </div>
-                </Card>
-
-                {/* Process Flow Arrow */}
-                {index < phases.length - 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, scaleY: 0 }}
-                    whileInView={{ opacity: 1, scaleY: 1 }}
-                    transition={{ duration: 0.8, delay: (index * 0.2) + 0.6 }}
-                    viewport={{ once: true }}
-                    className="flex justify-center my-12"
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="w-1 h-16 bg-gradient-to-b from-violet-500 to-emerald-500 opacity-40"></div>
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-violet-500 to-emerald-500 flex items-center justify-center shadow-lg">
-                        <ArrowRight className="h-5 w-5 text-white rotate-90" />
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+              {/* Step connector line */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-1/2 left-full w-12 h-0.5 bg-gradient-to-r from-primary/30 to-transparent transform -translate-y-1/2 translate-x-8"></div>
+              )}
+            </motion.div>
+          ))}
         </div>
 
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="text-lg text-muted-foreground mb-6">
+            Ready to see this in action for your business?
+          </p>
+          <a
+            href="https://calendly.com/samueljong/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-white font-semibold rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            data-testid="button-get-started"
+          >
+            <Calendar className="mr-2 h-5 w-5" />
+            Get Your First Appointments
+          </a>
+        </motion.div>
       </div>
     </section>
   );
