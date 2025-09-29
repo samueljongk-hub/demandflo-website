@@ -51,17 +51,65 @@ export default function ServicesSection() {
     }
   ];
 
-  // AI Data Scanning Radar - shows actual data point discovery
+  // AI Data Scanning Radar - interactive storytelling experience
   const SearchRadar = () => {
     const dataPoints = [
-      { label: "LinkedIn", angle: 0, delay: 0 },
-      { label: "Company News", angle: 45, delay: 0.3 },
-      { label: "Industry Trends", angle: 90, delay: 0.6 },
-      { label: "Pain Points", angle: 135, delay: 0.9 },
-      { label: "Recent Activity", angle: 180, delay: 1.2 },
-      { label: "Role Insights", angle: 225, delay: 1.5 },
-      { label: "Behavior Patterns", angle: 270, delay: 1.8 },
-      { label: "Context Signals", angle: 315, delay: 2.1 }
+      { 
+        label: "LinkedIn Posts", 
+        detail: "Recent activity & content", 
+        angle: 0, 
+        delay: 0,
+        category: "Social Intelligence"
+      },
+      { 
+        label: "Company News", 
+        detail: "Funding, growth, challenges", 
+        angle: 45, 
+        delay: 0.5,
+        category: "Business Context"
+      },
+      { 
+        label: "Industry Trends", 
+        detail: "Market dynamics & shifts", 
+        angle: 90, 
+        delay: 1.0,
+        category: "Market Intelligence"
+      },
+      { 
+        label: "Pain Points", 
+        detail: "Identified challenges & needs", 
+        angle: 135, 
+        delay: 1.5,
+        category: "Priority Analysis"
+      },
+      { 
+        label: "Behavioral Patterns", 
+        detail: "Decision-making style", 
+        angle: 180, 
+        delay: 2.0,
+        category: "Pattern Recognition"
+      },
+      { 
+        label: "Role Context", 
+        detail: "Responsibilities & priorities", 
+        angle: 225, 
+        delay: 2.5,
+        category: "Role Intelligence"
+      },
+      { 
+        label: "Timing Signals", 
+        detail: "When they're ready to buy", 
+        angle: 270, 
+        delay: 3.0,
+        category: "Intent Analysis"
+      },
+      { 
+        label: "Engagement History", 
+        detail: "Previous interactions", 
+        angle: 315, 
+        delay: 3.5,
+        category: "Relationship Context"
+      }
     ];
 
     return (
@@ -105,7 +153,7 @@ export default function ServicesSection() {
           }}
         />
 
-        {/* Data points that light up as radar sweeps */}
+        {/* Data points with dynamic labels */}
         {dataPoints.map((point, index) => {
           const radius = 120;
           const x = Math.cos((point.angle - 90) * Math.PI / 180) * radius;
@@ -114,33 +162,85 @@ export default function ServicesSection() {
           return (
             <motion.div
               key={point.label}
-              className="absolute w-3 h-3 bg-violet-500 rounded-full shadow-lg"
+              className="absolute"
               style={{
-                left: `calc(50% + ${x}px - 6px)`,
-                top: `calc(50% + ${y}px - 6px)`,
+                left: `calc(50% + ${x}px)`,
+                top: `calc(50% + ${y}px)`,
               }}
-              animate={{
-                scale: [0.5, 1.2, 0.5],
-                opacity: [0.3, 1, 0.3],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: (index * 0.5) % 4,
-              }}
-            />
+            >
+              {/* Data point pulse */}
+              <motion.div
+                className="absolute w-3 h-3 bg-violet-500 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
+                animate={{
+                  scale: [0.5, 1.5, 0.5],
+                  opacity: [0.3, 1, 0.3],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  delay: point.delay,
+                }}
+              />
+              
+              {/* Dynamic label that appears when discovered */}
+              <motion.div
+                className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: [0, 1, 1, 0],
+                  scale: [0.8, 1, 1, 0.8],
+                  y: [0, -20, -20, 0],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  delay: point.delay + 0.5,
+                  times: [0, 0.1, 0.8, 1]
+                }}
+              >
+                <div className="bg-white/95 backdrop-blur-sm border border-violet-200 rounded-lg p-2 shadow-lg min-w-[140px]">
+                  <div className="text-xs font-bold text-violet-700">{point.label}</div>
+                  <div className="text-xs text-gray-600">{point.detail}</div>
+                  <div className="text-xs text-violet-500 font-medium mt-1">{point.category}</div>
+                </div>
+              </motion.div>
+            </motion.div>
           );
         })}
 
-        {/* Data discovery indicators */}
+        {/* Live discovery feed */}
         <motion.div
-          className="absolute -bottom-6 left-1/2 transform -translate-x-1/2"
+          className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
           animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg text-center">
-            <span className="text-xs opacity-90">Analyzing</span>
-            <span className="block text-lg">30+ Data Points</span>
+          <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg text-center min-w-[200px]">
+            <div className="text-xs opacity-90 mb-1">Live Intelligence Gathering</div>
+            <div className="text-lg">30+ Data Points</div>
+            <div className="text-xs opacity-75 mt-1">Per Prospect Analysis</div>
+          </div>
+        </motion.div>
+
+        {/* Central discovery status */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-6 mt-12"
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          <div className="bg-white/90 backdrop-blur-sm border border-violet-200 rounded-md px-2 py-1 text-center shadow-sm">
+            <motion.div
+              className="text-xs font-medium text-violet-700"
+              animate={{
+                opacity: [0, 1, 1, 0],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                times: [0, 0.1, 0.8, 1]
+              }}
+            >
+              <span>Discovering...</span>
+            </motion.div>
           </div>
         </motion.div>
 
