@@ -51,65 +51,17 @@ export default function ServicesSection() {
     }
   ];
 
-  // AI Data Scanning Radar - interactive storytelling experience
+  // AI Data Scanning Radar - clean circular design
   const SearchRadar = () => {
     const dataPoints = [
-      { 
-        label: "LinkedIn Posts", 
-        detail: "Recent activity & content", 
-        angle: 0, 
-        delay: 0,
-        category: "Social Intelligence"
-      },
-      { 
-        label: "Company News", 
-        detail: "Funding, growth, challenges", 
-        angle: 45, 
-        delay: 0.5,
-        category: "Business Context"
-      },
-      { 
-        label: "Industry Trends", 
-        detail: "Market dynamics & shifts", 
-        angle: 90, 
-        delay: 1.0,
-        category: "Market Intelligence"
-      },
-      { 
-        label: "Pain Points", 
-        detail: "Identified challenges & needs", 
-        angle: 135, 
-        delay: 1.5,
-        category: "Priority Analysis"
-      },
-      { 
-        label: "Behavioral Patterns", 
-        detail: "Decision-making style", 
-        angle: 180, 
-        delay: 2.0,
-        category: "Pattern Recognition"
-      },
-      { 
-        label: "Role Context", 
-        detail: "Responsibilities & priorities", 
-        angle: 225, 
-        delay: 2.5,
-        category: "Role Intelligence"
-      },
-      { 
-        label: "Timing Signals", 
-        detail: "When they're ready to buy", 
-        angle: 270, 
-        delay: 3.0,
-        category: "Intent Analysis"
-      },
-      { 
-        label: "Engagement History", 
-        detail: "Previous interactions", 
-        angle: 315, 
-        delay: 3.5,
-        category: "Relationship Context"
-      }
+      { label: "LinkedIn Activity", detail: "Posts & engagement", angle: 0, delay: 0 },
+      { label: "Company News", detail: "Growth & funding", angle: 45, delay: 0.5 },
+      { label: "Industry Trends", detail: "Market shifts", angle: 90, delay: 1.0 },
+      { label: "Pain Points", detail: "Current challenges", angle: 135, delay: 1.5 },
+      { label: "Behavioral Data", detail: "Decision patterns", angle: 180, delay: 2.0 },
+      { label: "Role Insights", detail: "Job responsibilities", angle: 225, delay: 2.5 },
+      { label: "Intent Signals", detail: "Ready to buy", angle: 270, delay: 3.0 },
+      { label: "Contact History", detail: "Past interactions", angle: 315, delay: 3.5 }
     ];
 
     return (
@@ -140,17 +92,17 @@ export default function ServicesSection() {
           transition={{ duration: 3, repeat: Infinity, delay: 2 }}
         />
 
-        {/* Central AI brain icon with gradient */}
+        {/* Central AI brain icon - circular design */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            className="w-20 h-20 rounded-2xl shadow-2xl flex items-center justify-center"
+            className="w-24 h-24 rounded-full shadow-2xl flex items-center justify-center"
             style={{
               background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
             }}
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <Database className="h-10 w-10 text-white" />
+            <Database className="h-12 w-12 text-white" />
           </motion.div>
         </div>
 
@@ -165,47 +117,29 @@ export default function ServicesSection() {
           }}
         />
 
-        {/* Data points with labels positioned outside radar */}
+        {/* Data points with symmetrical labels */}
         {dataPoints.map((point, index) => {
-          const innerRadius = 140; // Position for pulse dots
-          const outerRadius = 180; // Position for labels (outside radar)
+          const dotRadius = 120; // Position for pulse dots on radar edge
+          const labelRadius = 200; // Position for labels outside radar
           
-          const innerX = Math.cos((point.angle - 90) * Math.PI / 180) * innerRadius;
-          const innerY = Math.sin((point.angle - 90) * Math.PI / 180) * innerRadius;
+          const dotX = Math.cos((point.angle - 90) * Math.PI / 180) * dotRadius;
+          const dotY = Math.sin((point.angle - 90) * Math.PI / 180) * dotRadius;
           
-          const outerX = Math.cos((point.angle - 90) * Math.PI / 180) * outerRadius;
-          const outerY = Math.sin((point.angle - 90) * Math.PI / 180) * outerRadius;
-          
-          // Smart label positioning to prevent overlap
-          let labelAlign = "center";
-          let labelOffset = { x: 0, y: 0 };
-          
-          if (point.angle >= 315 || point.angle < 45) { // Right side
-            labelAlign = "left";
-            labelOffset.x = 10;
-          } else if (point.angle >= 135 && point.angle < 225) { // Left side
-            labelAlign = "right";
-            labelOffset.x = -10;
-          } else if (point.angle >= 45 && point.angle < 135) { // Bottom
-            labelAlign = "center";
-            labelOffset.y = 10;
-          } else { // Top
-            labelAlign = "center";
-            labelOffset.y = -10;
-          }
+          const labelX = Math.cos((point.angle - 90) * Math.PI / 180) * labelRadius;
+          const labelY = Math.sin((point.angle - 90) * Math.PI / 180) * labelRadius;
           
           return (
             <div key={point.label}>
               {/* Data point pulse on radar edge */}
               <motion.div
-                className="absolute w-4 h-4 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute w-3 h-3 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
                 style={{
-                  left: `calc(50% + ${innerX}px)`,
-                  top: `calc(50% + ${innerY}px)`,
+                  left: `calc(50% + ${dotX}px)`,
+                  top: `calc(50% + ${dotY}px)`,
                   background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1))"
                 }}
                 animate={{
-                  scale: [0.5, 1.3, 0.5],
+                  scale: [0.5, 1.5, 0.5],
                   opacity: [0.4, 1, 0.4],
                 }}
                 transition={{
@@ -215,15 +149,12 @@ export default function ServicesSection() {
                 }}
               />
               
-              {/* Label positioned outside radar */}
+              {/* Label positioned symmetrically outside radar */}
               <motion.div
-                className="absolute"
+                className="absolute transform -translate-x-1/2 -translate-y-1/2"
                 style={{
-                  left: `calc(50% + ${outerX + labelOffset.x}px)`,
-                  top: `calc(50% + ${outerY + labelOffset.y}px)`,
-                  transform: labelAlign === "left" ? "translateY(-50%)" : 
-                            labelAlign === "right" ? "translate(-100%, -50%)" : 
-                            "translate(-50%, -50%)"
+                  left: `calc(50% + ${labelX}px)`,
+                  top: `calc(50% + ${labelY}px)`,
                 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
@@ -238,25 +169,19 @@ export default function ServicesSection() {
                 }}
               >
                 <div 
-                  className="backdrop-blur-sm border rounded-lg p-2 shadow-lg min-w-[120px] max-w-[140px]"
+                  className="backdrop-blur-sm border rounded-lg p-3 shadow-lg w-32 text-center"
                   style={{
                     background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9))",
                     borderColor: "rgba(139, 92, 246, 0.3)"
                   }}
                 >
                   <div 
-                    className="text-xs font-bold mb-1"
+                    className="text-sm font-bold mb-1"
                     style={{ color: "rgba(139, 92, 246, 1)" }}
                   >
                     {point.label}
                   </div>
-                  <div className="text-xs text-gray-600 mb-1">{point.detail}</div>
-                  <div 
-                    className="text-xs font-medium"
-                    style={{ color: "rgba(147, 51, 234, 0.8)" }}
-                  >
-                    {point.category}
-                  </div>
+                  <div className="text-xs text-gray-600">{point.detail}</div>
                 </div>
               </motion.div>
             </div>
