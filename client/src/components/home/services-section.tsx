@@ -65,30 +65,21 @@ export default function ServicesSection() {
     ];
 
     return (
-      <div className="relative w-96 h-96 mx-auto">
-        {/* Outer scanning rings with purple gradients */}
+      <div className="relative w-[600px] h-[600px] mx-auto">
+        {/* Circular scanning rings - centered in larger container */}
         <motion.div
-          className="absolute inset-0 rounded-full border-2"
-          style={{
-            borderImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.3), rgba(147, 51, 234, 0.3)) 1"
-          }}
-          animate={{ scale: [1, 1.15, 1] }}
+          className="absolute inset-[100px] rounded-full border-2 border-violet-300/40"
+          animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 3, repeat: Infinity }}
         />
         <motion.div
-          className="absolute inset-6 rounded-full border-2"
-          style={{
-            borderImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.5), rgba(147, 51, 234, 0.5)) 1"
-          }}
-          animate={{ scale: [1, 1.2, 1] }}
+          className="absolute inset-[120px] rounded-full border-2 border-violet-400/60"
+          animate={{ scale: [1, 1.15, 1] }}
           transition={{ duration: 3, repeat: Infinity, delay: 1 }}
         />
         <motion.div
-          className="absolute inset-12 rounded-full border-2"
-          style={{
-            borderImage: "linear-gradient(45deg, rgba(139, 92, 246, 0.7), rgba(147, 51, 234, 0.7)) 1"
-          }}
-          animate={{ scale: [1, 1.1, 1] }}
+          className="absolute inset-[140px] rounded-full border-2 border-purple-500/80"
+          animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 3, repeat: Infinity, delay: 2 }}
         />
 
@@ -106,36 +97,41 @@ export default function ServicesSection() {
           </motion.div>
         </div>
 
-        {/* Rotating radar sweep with gradient */}
+        {/* Rotating circular radar sweep */}
         <motion.div
-          className="absolute top-0 left-1/2 w-1 h-48 origin-bottom transform -translate-x-1/2"
+          className="absolute top-1/2 left-1/2 w-1 h-32 transform -translate-x-1/2 -translate-y-full"
           animate={{ rotate: [0, 360] }}
           transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
           style={{ 
             background: "linear-gradient(to top, rgba(139, 92, 246, 0.9), rgba(147, 51, 234, 0.6), rgba(168, 85, 247, 0.3), transparent)",
-            filter: "blur(1px)"
+            filter: "blur(1px)",
+            transformOrigin: "50% 100%"
           }}
         />
 
-        {/* Data points with symmetrical labels */}
+        {/* Data points with perfectly symmetrical labels */}
         {dataPoints.map((point, index) => {
-          const dotRadius = 120; // Position for pulse dots on radar edge
-          const labelRadius = 200; // Position for labels outside radar
+          const centerX = 300; // Center of 600px container
+          const centerY = 300; // Center of 600px container
+          const dotRadius = 140; // Position for pulse dots on radar edge
+          const labelRadius = 240; // Position for labels outside radar
           
-          const dotX = Math.cos((point.angle - 90) * Math.PI / 180) * dotRadius;
-          const dotY = Math.sin((point.angle - 90) * Math.PI / 180) * dotRadius;
+          // Convert angle to radians and calculate positions
+          const radians = (point.angle * Math.PI) / 180;
+          const dotX = centerX + Math.cos(radians) * dotRadius;
+          const dotY = centerY + Math.sin(radians) * dotRadius;
           
-          const labelX = Math.cos((point.angle - 90) * Math.PI / 180) * labelRadius;
-          const labelY = Math.sin((point.angle - 90) * Math.PI / 180) * labelRadius;
+          const labelX = centerX + Math.cos(radians) * labelRadius;
+          const labelY = centerY + Math.sin(radians) * labelRadius;
           
           return (
             <div key={point.label}>
               {/* Data point pulse on radar edge */}
               <motion.div
-                className="absolute w-3 h-3 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute w-4 h-4 rounded-full shadow-lg transform -translate-x-1/2 -translate-y-1/2"
                 style={{
-                  left: `calc(50% + ${dotX}px)`,
-                  top: `calc(50% + ${dotY}px)`,
+                  left: `${dotX}px`,
+                  top: `${dotY}px`,
                   background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1))"
                 }}
                 animate={{
@@ -149,12 +145,12 @@ export default function ServicesSection() {
                 }}
               />
               
-              {/* Label positioned symmetrically outside radar */}
+              {/* Label positioned perfectly around the circle */}
               <motion.div
                 className="absolute transform -translate-x-1/2 -translate-y-1/2"
                 style={{
-                  left: `calc(50% + ${labelX}px)`,
-                  top: `calc(50% + ${labelY}px)`,
+                  left: `${labelX}px`,
+                  top: `${labelY}px`,
                 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
@@ -169,7 +165,7 @@ export default function ServicesSection() {
                 }}
               >
                 <div 
-                  className="backdrop-blur-sm border rounded-lg p-3 shadow-lg w-32 text-center"
+                  className="backdrop-blur-sm border rounded-lg p-3 shadow-lg w-36 text-center"
                   style={{
                     background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9))",
                     borderColor: "rgba(139, 92, 246, 0.3)"
