@@ -3,12 +3,6 @@ import { Zap, Linkedin } from "lucide-react";
 import logoImage from "@assets/demandflo_logo_white.png";
 
 export default function Footer() {
-  const serviceLinks = [
-    { href: "/services", label: "Hyper-Personalized Outreach" },
-    { href: "/services", label: "AI-Powered Research" },
-    { href: "/services", label: "Qualified Appointment Delivery" },
-    { href: "/services", label: "Forum Intelligence Automation" },
-  ];
 
   const companyLinks = [
     { href: "/about", label: "About Us" },
@@ -24,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="bg-secondary text-secondary-foreground py-16" data-testid="footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
           <div className="lg:col-span-2">
             <div className="mb-6">
               <img 
@@ -52,22 +46,6 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Services</h3>
-            <ul className="space-y-3 text-gray-300">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-white transition-colors"
-                    data-testid={`footer-service-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Company</h3>
