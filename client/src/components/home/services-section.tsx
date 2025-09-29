@@ -51,8 +51,15 @@ export default function ServicesSection() {
     }
   ];
 
-  // AI Data Scanning Radar - clean circular design
+  // AI Data Scanning Radar - rebuilt from scratch with proper geometry
   const SearchRadar = () => {
+    // Shared geometry constants for perfect alignment
+    const CONTAINER_SIZE = 400; // 25rem equivalent 
+    const CENTER = CONTAINER_SIZE / 2;
+    const RING_RADII = [60, 80, 100]; // Concentric ring radii
+    const DOT_RADIUS = 100; // Position for pulse dots
+    const LABEL_RADIUS = 160; // Position for text labels (outside container)
+    
     const dataPoints = [
       { label: "LinkedIn Activity", detail: "Posts & engagement", angle: 0, delay: 0 },
       { label: "Company News", detail: "Growth & funding", angle: 45, delay: 0.5 },
@@ -64,71 +71,96 @@ export default function ServicesSection() {
       { label: "Contact History", detail: "Past interactions", angle: 315, delay: 3.5 }
     ];
 
+    // Convert angle to position using polar coordinates
+    const getPosition = (angle: number, radius: number) => {
+      const radians = (angle * Math.PI) / 180;
+      return {
+        x: CENTER + Math.cos(radians) * radius,
+        y: CENTER + Math.sin(radians) * radius
+      };
+    };
+
     return (
-      <div className="flex items-center justify-center min-h-[600px] w-full">
-        <div className="relative w-96 h-96">
-          {/* Circular radar rings */}
-          <motion.div
-            className="absolute inset-4 rounded-full border-2 border-violet-300/40"
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 3, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute inset-8 rounded-full border-2 border-violet-400/60"
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-          />
-          <motion.div
-            className="absolute inset-12 rounded-full border-2 border-purple-500/80"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-          />
-
-          {/* Central AI brain */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              className="w-20 h-20 rounded-full shadow-2xl flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
-              }}
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <Database className="h-10 w-10 text-white" />
-            </motion.div>
-          </div>
-
-          {/* Rotating radar sweep */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-0.5 h-44 transform -translate-x-1/2 origin-bottom"
+      <div className="flex items-center justify-center py-12">
+        <div 
+          className="relative"
+          style={{ 
+            width: `${CONTAINER_SIZE + LABEL_RADIUS * 2}px`, 
+            height: `${CONTAINER_SIZE + LABEL_RADIUS * 2}px` 
+          }}
+        >
+          {/* Radar container centered within larger container */}
+          <div 
+            className="absolute rounded-full"
             style={{
-              background: "linear-gradient(to top, rgba(139, 92, 246, 0.9), transparent)",
-              transformOrigin: "50% 176px"
+              width: `${CONTAINER_SIZE}px`,
+              height: `${CONTAINER_SIZE}px`,
+              left: `${LABEL_RADIUS}px`,
+              top: `${LABEL_RADIUS}px`
             }}
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-          />
+          >
+            {/* Concentric radar rings */}
+            {RING_RADII.map((radius, index) => (
+              <motion.div
+                key={index}
+                className="absolute rounded-full border-2"
+                style={{
+                  width: `${radius * 2}px`,
+                  height: `${radius * 2}px`,
+                  left: `${CENTER - radius}px`,
+                  top: `${CENTER - radius}px`,
+                  borderColor: `rgba(139, 92, 246, ${0.3 + index * 0.2})`
+                }}
+                animate={{ scale: [1, 1.05 + index * 0.05, 1] }}
+                transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+              />
+            ))}
 
-          {/* Data points positioned far outside radar */}
-          {dataPoints.map((point, index) => {
-            // Position dots on outer radar ring
-            const dotRadius = 176; // Just inside outer ring
-            const dotX = Math.cos((point.angle - 90) * Math.PI / 180) * dotRadius;
-            const dotY = Math.sin((point.angle - 90) * Math.PI / 180) * dotRadius;
-            
-            // Position labels much further outside
-            const labelRadius = 300;
-            const labelX = Math.cos((point.angle - 90) * Math.PI / 180) * labelRadius;
-            const labelY = Math.sin((point.angle - 90) * Math.PI / 180) * labelRadius;
-            
-            return (
-              <div key={point.label}>
-                {/* Pulse dot on radar edge */}
+            {/* Central AI brain */}
+            <div 
+              className="absolute flex items-center justify-center"
+              style={{
+                width: "80px",
+                height: "80px", 
+                left: `${CENTER - 40}px`,
+                top: `${CENTER - 40}px`
+              }}
+            >
+              <motion.div
+                className="w-full h-full rounded-full shadow-2xl flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
+                }}
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Database className="h-8 w-8 text-white" />
+              </motion.div>
+            </div>
+
+            {/* Rotating radar sweep */}
+            <motion.div
+              className="absolute w-0.5 origin-bottom"
+              style={{
+                height: `${DOT_RADIUS}px`,
+                left: `${CENTER}px`,
+                top: `${CENTER - DOT_RADIUS}px`,
+                background: "linear-gradient(to top, rgba(139, 92, 246, 0.9), transparent)"
+              }}
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            />
+
+            {/* Data points on radar edge */}
+            {dataPoints.map((point, index) => {
+              const dotPos = getPosition(point.angle, DOT_RADIUS);
+              return (
                 <motion.div
+                  key={`dot-${index}`}
                   className="absolute w-3 h-3 rounded-full transform -translate-x-1/2 -translate-y-1/2"
                   style={{
-                    left: `calc(50% + ${dotX}px)`,
-                    top: `calc(50% + ${dotY}px)`,
+                    left: `${dotPos.x}px`,
+                    top: `${dotPos.y}px`,
                     background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1))"
                   }}
                   animate={{
@@ -141,68 +173,58 @@ export default function ServicesSection() {
                     delay: point.delay,
                   }}
                 />
-                
-                {/* Text label positioned far outside */}
-                <motion.div
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2"
+              );
+            })}
+          </div>
+
+          {/* Text labels positioned outside radar */}
+          {dataPoints.map((point, index) => {
+            const labelPos = getPosition(point.angle, LABEL_RADIUS);
+            const absoluteX = LABEL_RADIUS + labelPos.x;
+            const absoluteY = LABEL_RADIUS + labelPos.y;
+            
+            return (
+              <motion.div
+                key={`label-${index}`}
+                className="absolute transform -translate-x-1/2 -translate-y-1/2"
+                style={{
+                  left: `${absoluteX}px`,
+                  top: `${absoluteY}px`,
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: [0, 1, 1, 0],
+                  scale: [0.8, 1, 1, 0.8],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  delay: point.delay + 0.5,
+                  times: [0, 0.1, 0.8, 1]
+                }}
+              >
+                <div 
+                  className="backdrop-blur-sm border rounded-lg p-3 shadow-lg w-32 text-center"
                   style={{
-                    left: `calc(50% + ${labelX}px)`,
-                    top: `calc(50% + ${labelY}px)`,
-                  }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{
-                    opacity: [0, 1, 1, 0],
-                    scale: [0.8, 1, 1, 0.8],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    delay: point.delay + 0.5,
-                    times: [0, 0.1, 0.8, 1]
+                    background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9))",
+                    borderColor: "rgba(139, 92, 246, 0.3)"
                   }}
                 >
                   <div 
-                    className="backdrop-blur-sm border rounded-lg p-3 shadow-lg w-32 text-center"
-                    style={{
-                      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9))",
-                      borderColor: "rgba(139, 92, 246, 0.3)"
-                    }}
+                    className="text-sm font-bold mb-1"
+                    style={{ color: "rgba(139, 92, 246, 1)" }}
                   >
-                    <div 
-                      className="text-sm font-bold mb-1"
-                      style={{ color: "rgba(139, 92, 246, 1)" }}
-                    >
-                      {point.label}
-                    </div>
-                    <div className="text-xs text-gray-600">{point.detail}</div>
+                    {point.label}
                   </div>
-                </motion.div>
-              </div>
+                  <div className="text-xs text-gray-600">{point.detail}</div>
+                </div>
+              </motion.div>
             );
           })}
 
-          {/* Status badge at bottom */}
+          {/* Status indicators */}
           <motion.div
-            className="absolute -bottom-20 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-          >
-            <div 
-              className="px-6 py-3 rounded-full text-white text-sm font-semibold shadow-lg text-center"
-              style={{
-                background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
-              }}
-            >
-              Live Intelligence Gathering
-              <div className="text-xl font-bold">30+ Data Points</div>
-              <div className="text-xs opacity-90">Per Prospect Analysis</div>
-            </div>
-          </motion.div>
-
-          {/* Scanning status indicator */}
-          <motion.div
-            className="absolute -top-12 left-1/2 transform -translate-x-1/2"
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full mb-4"
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
@@ -223,6 +245,24 @@ export default function ServicesSection() {
               >
                 AI ACTIVE
               </span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full mt-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+          >
+            <div 
+              className="px-6 py-3 rounded-full text-white text-sm font-semibold shadow-lg text-center"
+              style={{
+                background: "linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(147, 51, 234, 1), rgba(168, 85, 247, 1))"
+              }}
+            >
+              Live Intelligence Gathering
+              <div className="text-xl font-bold">30+ Data Points</div>
+              <div className="text-xs opacity-90">Per Prospect Analysis</div>
             </div>
           </motion.div>
         </div>
