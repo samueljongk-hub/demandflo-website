@@ -1,5 +1,7 @@
 {
-  "version": 2,
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "dist/public",
+  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/api/:path*",
