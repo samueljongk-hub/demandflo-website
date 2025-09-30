@@ -4,12 +4,23 @@ import { eq } from "drizzle-orm";
 import type { InsertBlogPost, InsertContactSubmission } from "@shared/schema";
 
 export const storage = {
-  // Get all published blog posts
+  // Get all published blog posts (matches routes.ts)
+  async getBlogPosts() {
+    return await db.select().from(blogPosts).where(eq(blogPosts.published, true));
+  },
+
+  // Get a single blog post by slug (matches routes.ts)
+  async getBlogPost(slug: string) {
+    const posts = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return posts[0] || null;
+  },
+
+  // Get all published blog posts (alternative method name)
   async getPublishedBlogPosts() {
     return await db.select().from(blogPosts).where(eq(blogPosts.published, true));
   },
 
-  // Get a single blog post by slug
+  // Get a single blog post by slug (alternative method name)
   async getBlogPostBySlug(slug: string) {
     const posts = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
     return posts[0] || null;
