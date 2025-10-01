@@ -15,11 +15,11 @@ export default function Plans() {
       calls: "4 qualified calls",
       period: "each month",
       features: [
-        "Minimum 4 qualified calls guaranteed",
-        "Hyper-personalized email sequences",
-        "AI-powered prospect research",
-        "No-show replacement included",
-        "Month-to-month flexibility"
+        { text: "Minimum 4 qualified calls guaranteed", highlighted: false },
+        { text: "Hyper-personalized email sequences", highlighted: false },
+        { text: "AI-powered prospect research", highlighted: false },
+        { text: "No-show replacement included", highlighted: false },
+        { text: "Month-to-month flexibility", highlighted: false }
       ],
       badge: "Best for Testing",
       popular: false
@@ -31,11 +31,14 @@ export default function Plans() {
       calls: "7 qualified calls",
       period: "each month",
       features: [
-        "Minimum 7 qualified calls guaranteed",
-        "Advanced targeting & segmentation",
-        "Priority support & optimization",
-        "Access to our latest tools & features",
-        "No-show replacement included"
+        { text: "Minimum 7 qualified calls guaranteed", highlighted: false },
+        { text: "Hyper-personalized email sequences", highlighted: false },
+        { text: "AI-powered prospect research", highlighted: false },
+        { text: "No-show replacement included", highlighted: false },
+        { text: "Month-to-month flexibility", highlighted: false },
+        { text: "Advanced targeting & segmentation", highlighted: true },
+        { text: "Priority support & optimization", highlighted: true },
+        { text: "Access to our latest tools & features", highlighted: true }
       ],
       badge: "Most Popular",
       popular: true
@@ -47,11 +50,14 @@ export default function Plans() {
       calls: "10+ qualified calls",
       period: "each month", 
       features: [
-        "Minimum 10+ qualified calls guaranteed",
-        "Premium targeting & optimization",
-        "Dedicated account management",
-        "Early beta access to new features",
-        "Access to our latest tools & features"
+        { text: "Minimum 10+ qualified calls guaranteed", highlighted: false },
+        { text: "Hyper-personalized email sequences", highlighted: false },
+        { text: "AI-powered prospect research", highlighted: false },
+        { text: "No-show replacement included", highlighted: false },
+        { text: "Month-to-month flexibility", highlighted: false },
+        { text: "Premium targeting & optimization", highlighted: true },
+        { text: "Early beta access to new features", highlighted: true },
+        { text: "Access to our latest tools & features", highlighted: true }
       ],
       badge: "Best Value",
       popular: false
@@ -129,8 +135,8 @@ export default function Plans() {
                           viewport={{ once: true }}
                           className="flex items-start text-sm"
                         >
-                          <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5 mr-3" />
-                          <span className="text-foreground">{feature}</span>
+                          <CheckCircle className={`h-4 w-4 ${feature.highlighted ? 'text-accent' : 'text-primary'} flex-shrink-0 mt-0.5 mr-3`} />
+                          <span className={`${feature.highlighted ? 'font-semibold text-foreground' : 'text-foreground'}`}>{feature.text}</span>
                         </motion.li>
                       ))}
                     </ul>
