@@ -59,7 +59,7 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      details: ["team@demandflo.co", "Response within 24 hours"]
+      details: ["team@demandflo.ai", "Response within 24 hours"]
     },
     {
       icon: Clock,
