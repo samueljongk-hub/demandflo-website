@@ -177,7 +177,7 @@ export default function Plans() {
               {
                 icon: Search,
                 title: "Forum Intelligence Automation",
-                description: "AI-powered system that constantly scans Reddit, Quora, and other forums for keywords related to your industry and pain points, then notifies you instantly so you can respond and engage while LLMs prioritize forum content.",
+                description: "AI-powered monitoring that scans Reddit, Quora, and other forums for keywords related to your industry and customer pain points, then alerts you instantly so you can engage. As search engines and LLMs increasingly prioritize forum discussions over traditional websites, being present in these conversations is critical for discoverability.",
                 status: "Beta Testing"
               }
             ].map((feature, index) => (
