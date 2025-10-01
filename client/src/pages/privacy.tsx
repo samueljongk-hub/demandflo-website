@@ -36,7 +36,7 @@ export default function Privacy() {
               <div>
                 <h2 id="introduction" className="text-3xl font-bold mb-4">1. Introduction</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Demand Flo ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.demandflo.co or use our AI-powered lead generation and email outreach services.
+                  Demand Flo ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.demandflo.ai or use our AI-powered lead generation and email outreach services.
                 </p>
                 <div className="mt-4 p-4 bg-primary/10 rounded-lg">
                   <p className="font-semibold text-primary">Our Services:</p>
@@ -221,8 +221,8 @@ export default function Privacy() {
                 <h2 id="contact" className="text-3xl font-bold mb-4">8. Contact Information</h2>
                 <div className="bg-primary/10 p-6 rounded-lg">
                   <p className="font-semibold text-lg mb-2">Demand Flo</p>
-                  <p className="text-muted-foreground mb-2">Email: <a href="mailto:legal@demandflo.co" className="text-primary hover:underline">legal@demandflo.co</a></p>
-                  <p className="text-muted-foreground">Website: <a href="https://www.demandflo.co" className="text-primary hover:underline">www.demandflo.co</a></p>
+                  <p className="text-muted-foreground mb-2">Email: <a href="mailto:legal@demandflo.ai" className="text-primary hover:underline">legal@demandflo.ai</a></p>
+                  <p className="text-muted-foreground">Website: <a href="https://www.demandflo.ai" className="text-primary hover:underline">www.demandflo.ai</a></p>
                 </div>
               </div>
 
