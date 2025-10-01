@@ -62,7 +62,7 @@ export default function Plans() {
   return (
     <div className="min-h-screen pt-16" data-testid="page-plans">
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-b from-background to-muted/30">
+      <section className="py-16 bg-gradient-to-b from-background to-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -82,7 +82,7 @@ export default function Plans() {
       </section>
 
       {/* Plans Section */}
-      <section className="py-24">
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8 mb-16">
             {plans.map((plan, index) => (

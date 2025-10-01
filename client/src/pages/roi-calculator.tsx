@@ -80,7 +80,7 @@ export default function RoiCalculator() {
   return (
     <div className="min-h-screen pt-16" data-testid="roi-calculator-page">
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23000000%22%20fill-opacity%3D%220.02%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -88,7 +88,7 @@ export default function RoiCalculator() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center"
           >
             <div className="flex items-center justify-center mb-6">
               <div className="p-4 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg">
