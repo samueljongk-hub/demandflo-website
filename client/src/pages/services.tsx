@@ -56,8 +56,9 @@ export default function Plans() {
         { text: "No-show replacement included", highlighted: false },
         { text: "Month-to-month flexibility", highlighted: false },
         { text: "Premium targeting & optimization", highlighted: true },
-        { text: "Early beta access to new features", highlighted: true },
-        { text: "Access to our latest tools & features", highlighted: true }
+        { text: "Priority support & optimization", highlighted: true },
+        { text: "Access to our latest tools & features", highlighted: true },
+        { text: "Early beta access to new features", highlighted: true }
       ],
       badge: "Best Value",
       popular: false
