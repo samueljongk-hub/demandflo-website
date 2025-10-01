@@ -108,8 +108,8 @@ export default function Plans() {
                   </div>
                 )}
                 
-                <Card className={`h-full p-0 overflow-hidden hover:shadow-2xl transition-all duration-500 bg-card border-2 ${plan.popular ? 'border-primary/30 scale-105 bg-primary/5' : 'border-border'}`} data-testid={`plan-${plan.name.toLowerCase()}`}>
-                  <div className="p-8 space-y-6">
+                <Card className={`h-full p-0 overflow-hidden hover:shadow-2xl transition-all duration-500 bg-card border-2 ${plan.popular ? 'border-primary/30 bg-primary/5' : 'border-border'}`} data-testid={`plan-${plan.name.toLowerCase()}`}>
+                  <div className="p-8 space-y-6 flex flex-col h-full">
                     {/* Plan Header */}
                     <div className="text-center space-y-2">
                       <h3 className="text-3xl font-bold text-foreground">{plan.name}</h3>
@@ -126,7 +126,7 @@ export default function Plans() {
                     </div>
 
                     {/* Features */}
-                    <ul className="space-y-3">
+                    <ul className="space-y-4 flex-grow">
                       {plan.features.map((feature, featureIndex) => (
                         <motion.li
                           key={featureIndex}
