@@ -32,10 +32,7 @@ export default function Plans() {
       period: "each month",
       features: [
         { text: "Minimum 7 qualified calls guaranteed", highlighted: false },
-        { text: "Hyper-personalized email sequences", highlighted: false },
-        { text: "AI-powered prospect research", highlighted: false },
-        { text: "No-show replacement included", highlighted: false },
-        { text: "Month-to-month flexibility", highlighted: false },
+        { text: "Everything in Pilot, plus:", highlighted: false, separator: true },
         { text: "Advanced targeting & segmentation", highlighted: true },
         { text: "Priority support & optimization", highlighted: true },
         { text: "Access to our latest tools & features", highlighted: true }
@@ -51,10 +48,7 @@ export default function Plans() {
       period: "each month", 
       features: [
         { text: "Minimum 10+ qualified calls guaranteed", highlighted: false },
-        { text: "Hyper-personalized email sequences", highlighted: false },
-        { text: "AI-powered prospect research", highlighted: false },
-        { text: "No-show replacement included", highlighted: false },
-        { text: "Month-to-month flexibility", highlighted: false },
+        { text: "Everything in Pilot, plus:", highlighted: false, separator: true },
         { text: "Premium targeting & optimization", highlighted: true },
         { text: "Priority support & optimization", highlighted: true },
         { text: "Access to our latest tools & features", highlighted: true },
@@ -134,10 +128,10 @@ export default function Plans() {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.5, delay: (index * 0.1) + (featureIndex * 0.05) + 0.3 }}
                           viewport={{ once: true }}
-                          className="flex items-start text-sm"
+                          className={`flex items-start text-sm ${feature.separator ? 'mt-2 mb-1' : ''}`}
                         >
-                          <CheckCircle className={`h-4 w-4 ${feature.highlighted ? 'text-accent' : 'text-primary'} flex-shrink-0 mt-0.5 mr-3`} />
-                          <span className={`${feature.highlighted ? 'font-semibold text-foreground' : 'text-foreground'}`}>{feature.text}</span>
+                          <CheckCircle className={`h-4 w-4 ${feature.highlighted ? 'text-accent' : 'text-primary'} flex-shrink-0 mt-0.5 mr-3 ${feature.separator ? 'opacity-0' : ''}`} />
+                          <span className={`${feature.separator ? 'italic text-muted-foreground font-medium -ml-7' : feature.highlighted ? 'font-semibold text-foreground' : 'text-foreground'}`}>{feature.text}</span>
                         </motion.li>
                       ))}
                     </ul>
