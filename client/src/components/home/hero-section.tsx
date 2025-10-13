@@ -33,6 +33,21 @@ export default function HeroSection() {
               Start with a minimum of 4 qualified calls monthly and scale as you grow. 
               Thousands of hyper-personalized emails daily at 70% cost reduction vs hiring an SDR.
             </p>
+            <div className="flex items-center space-x-8 pt-8">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                  className="text-center"
+                  data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  <div className="text-3xl font-bold gradient-text">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 asChild
@@ -55,21 +70,6 @@ export default function HeroSection() {
                 <Play className="mr-2 h-5 w-5" />
                 See Your ROI
               </Button>
-            </div>
-            <div className="flex items-center space-x-8 pt-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                  className="text-center"
-                  data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  <div className="text-3xl font-bold gradient-text">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
 
