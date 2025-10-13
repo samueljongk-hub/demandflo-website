@@ -33,7 +33,7 @@ export default function HeroSection() {
               Start with a minimum of 4 qualified calls monthly and scale as you grow. 
               Thousands of hyper-personalized emails daily at 70% cost reduction vs hiring an SDR.
             </p>
-            <div className="flex items-center space-x-8 pt-8">
+            <div className="flex items-center space-x-8 pt-4">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
