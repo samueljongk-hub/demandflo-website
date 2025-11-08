@@ -250,17 +250,24 @@ async function seedBlogPosts() {
   console.log("Starting to seed blog posts...");
 
   try {
+    console.log("Clearing existing blog posts...");
+    await db.delete(blogPosts);
+    console.log("Existing blog posts removed.");
+
     for (const post of samplePosts) {
-      await db.insert(blogPosts).values(post);
+      await db
+        .insert(blogPosts)
+        .values(post)
       console.log(`✓ Inserted: ${post.title}`);
     }
 
     console.log("\n✅ All blog posts seeded successfully!");
   } catch (error) {
     console.error("Error seeding blog posts:", error);
+    process.exitCode = 1;
+  } finally {
+    process.exit();
   }
-
-  process.exit(0);
 }
 
 seedBlogPosts();
