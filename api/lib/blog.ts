@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 
-import { db } from "./db";
-import { blogPosts } from "../../shared/schema";
+import { db } from "./db.js";
+import { blogPosts } from "../../shared/schema.js";
 
 export async function getPublishedBlogPosts() {
   return db.select().from(blogPosts).where(eq(blogPosts.published, true));
