@@ -55,7 +55,7 @@ export default function HeroSection() {
                 className="gradient-primary text-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl text-lg px-8 py-4"
                 data-testid="button-start-consultation"
               >
-                <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/samueljong/discovery" target="_blank" rel="noopener noreferrer">
                   <Rocket className="mr-2 h-5 w-5" />
                   Get Your First Appointments
                 </a>

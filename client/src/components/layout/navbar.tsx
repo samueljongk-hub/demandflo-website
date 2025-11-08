@@ -63,7 +63,7 @@ export default function Navbar() {
               className="gradient-primary text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-200"
               data-testid="button-book-consultation"
             >
-              <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/samueljong/discovery" target="_blank" rel="noopener noreferrer">
                 Get Your First Appointments
               </a>
             </Button>
@@ -96,7 +96,7 @@ export default function Navbar() {
                     className="gradient-primary text-primary-foreground mt-4 w-full"
                     data-testid="button-mobile-book-consultation"
                   >
-                    <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                    <a href="https://calendly.com/samueljong/discovery" target="_blank" rel="noopener noreferrer">
                       Get Your First Appointments
                     </a>
                   </Button>

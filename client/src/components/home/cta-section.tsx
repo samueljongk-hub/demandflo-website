@@ -49,7 +49,7 @@ export default function CtaSection() {
               className="gradient-primary text-white px-12 py-6 text-xl hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl"
               data-testid="button-get-first-appointments"
             >
-              <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/samueljong/discovery" target="_blank" rel="noopener noreferrer">
                 <CalendarCheck className="mr-3 h-6 w-6" />
                 Get Your First Appointments
               </a>

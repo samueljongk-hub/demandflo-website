@@ -247,7 +247,7 @@ export default function Plans() {
                     className="bg-white text-primary hover:bg-gray-100 transition-colors font-semibold px-8 py-4"
                     data-testid="button-book-call"
                   >
-                    <a href="https://calendly.com/samueljong/30min" target="_blank" rel="noopener noreferrer">
+                    <a href="https://calendly.com/samueljong/discovery" target="_blank" rel="noopener noreferrer">
                       Get Your First Appointments
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </a>
