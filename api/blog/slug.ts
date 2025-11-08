@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getBlogPostBySlug } from '../_lib/blog.js';
+import { getBlogPostBySlug } from '../lib/blog.js';
 
 export default async function handler(
   req: VercelRequest,
