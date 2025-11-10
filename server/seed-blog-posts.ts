@@ -3,7 +3,7 @@ import { blogPosts } from "@shared/schema";
 
 const samplePosts = [
   {
-    title: "How to Master Email Marketing in 2025: A Comprehensive Guide",
+    title: "How to Master Email Marketing in 2026: A Comprehensive Guide",
     content: `By the end of this guide, you will be able to create and run successful email campaigns that will boost your business growth.
 
 Why Is Email Marketing So Important?
@@ -81,7 +81,7 @@ To optimize both email deliverability and performance, you need to follow some b
     published: true,
   },
   {
-    title: "Cold Email Marketing in 2025: A Conversation That Converts",
+    title: "Cold Email Marketing in 2026: A Conversation That Converts",
     content: `Cold email carries a tough reputation. Average campaigns limp along with roughly 6% opens and fewer than 1% replies. Teams pour hours into writing and list building, then watch messages disappear into the void. The good news: these numbers change fast once each prospect feels the note was written for them alone.
 
 At Demand Flo we rely on "Show Me You Know Me". That single mindset lifts our opens to about 44% and replies to 15%. This expanded guide walks through the full approach, adds fresh examples, and answers common questions so you can put the tactics to work right now.
@@ -177,7 +177,7 @@ Final Thought
 
 Cold email is alive and well when every recipient feels seen. Tiny proofs of attention turn anonymous outreach into a real conversation. Follow the steps above, test for a week, and watch replies climb.`,
     excerpt: "Learn how to transform cold email from a numbers game into genuine conversations that convert. Discover the 'Show Me You Know Me' approach that lifts open rates to 44% and reply rates to 15%.",
-    category: "Cold Email",
+    category: "Email Marketing",
     readTime: "12 min read",
     imageUrl: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
     slug: "cold-email-marketing-2025-conversation-converts",
