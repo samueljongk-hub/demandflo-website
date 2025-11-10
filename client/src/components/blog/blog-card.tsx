@@ -53,11 +53,11 @@ export default function BlogCard({ post }: BlogCardProps) {
             </div>
           </div>
           
-          <h3 className="text-xl font-semibold mb-3 leading-tight line-clamp-2" data-testid={`blog-title-${post.slug}`}>
+          <h3 className="text-lg font-semibold mb-3 leading-snug min-h-[3.5rem]" data-testid={`blog-title-${post.slug}`}>
             {post.title}
           </h3>
           
-          <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3 flex-grow" data-testid={`blog-excerpt-${post.slug}`}>
+          <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2 flex-grow" data-testid={`blog-excerpt-${post.slug}`}>
             {post.excerpt}
           </p>
           

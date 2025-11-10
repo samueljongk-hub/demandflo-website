@@ -5,16 +5,30 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import BlogCard from "@/components/blog/blog-card";
 import { BlogPost } from "@shared/schema";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    document.title = "Blog - Latest Lead Generation Insights | DemandFlo";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Expert articles on B2B lead generation, email marketing, and outbound sales strategies. Learn proven tactics to scale your business and generate qualified appointments.');
+    }
+  }, []);
 
   const { data: blogPosts = [], isLoading } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog/posts"],
   });
 
-  const filteredPosts = blogPosts.filter(post =>
+  const sortedPosts = [...blogPosts].sort((a, b) => {
+    const dateA = new Date(a.createdAt || 0).getTime();
+    const dateB = new Date(b.createdAt || 0).getTime();
+    return dateB - dateA;
+  });
+
+  const filteredPosts = sortedPosts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
     post.category.toLowerCase().includes(searchTerm.toLowerCase())

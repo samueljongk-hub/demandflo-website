@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { BlogPost } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");
@@ -26,6 +27,33 @@ export default function BlogPostPage() {
     },
     enabled: !!slug,
   });
+
+  useEffect(() => {
+    if (post) {
+      document.title = `${post.title} | DemandFlo Blog`;
+      
+      const updateMeta = (name: string, content: string, isProperty = false) => {
+        const attribute = isProperty ? 'property' : 'name';
+        let meta = document.querySelector(`meta[${attribute}="${name}"]`);
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute(attribute, name);
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content);
+      };
+
+      updateMeta('description', post.excerpt);
+      updateMeta('og:title', post.title, true);
+      updateMeta('og:description', post.excerpt, true);
+      updateMeta('og:image', post.imageUrl, true);
+      updateMeta('og:type', 'article', true);
+      updateMeta('twitter:card', 'summary_large_image');
+      updateMeta('twitter:title', post.title);
+      updateMeta('twitter:description', post.excerpt);
+      updateMeta('twitter:image', post.imageUrl);
+    }
+  }, [post]);
 
   if (isLoading) {
     return (
@@ -139,6 +167,32 @@ export default function BlogPostPage() {
       return null;
     };
 
+    const boldKeyPhrases = (text: string) => {
+      const keyPhrases = [
+        'What I see:',
+        'Why it backfires:',
+        'The fix:',
+        'Action step:',
+        'The Bottom Line:',
+        'Step 1:',
+        'Step 2:',
+        'Step 3:',
+        'Step 4:',
+        'Step 5:',
+        'Final Thought',
+        'Ready to Transform Your Outbound Results?',
+        'At Demand Flo'
+      ];
+      
+      let result = text;
+      keyPhrases.forEach(phrase => {
+        const regex = new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
+        result = result.replace(regex, '<strong>$1</strong>');
+      });
+      
+      return result;
+    };
+
     const renderListContent = (text: string) => {
       const lines = text.split('\n');
       const items = [];
@@ -231,10 +285,13 @@ export default function BlogPostPage() {
       }
       
       // Regular paragraph
+      const paragraphWithBold = boldKeyPhrases(trimmed);
       return (
-        <p key={index} className="text-lg leading-relaxed text-foreground mb-6">
-          {trimmed}
-        </p>
+        <p 
+          key={index} 
+          className="text-lg leading-relaxed text-foreground mb-6"
+          dangerouslySetInnerHTML={{ __html: paragraphWithBold }}
+        />
       );
     });
   };
