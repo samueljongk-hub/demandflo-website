@@ -1,0 +1,207 @@
+You are an expert content + dev assistant working inside this codebase. Create a new blog post using the article text below. Follow these rules exactly.
+
+0) Understand the existing blog format
+	1.	Inspect the repo to find where blog posts live (e.g., /content/blog, /posts, /src/content/blog, /app/blog, /pages/blog).
+	2.	Open 2–3 recent posts and copy the exact front-matter keys, component usage, and MD/MDX conventions (e.g., title, description, date, slug, tags, hero, seo, canonicalUrl, readingTime, any imported components).
+	3.	Mirror heading styles, author credit, and how the index page reads metadata (date, excerpt, tags). If posts use MDX components (like <Callout> or <CTA>), follow the same pattern.
+
+1) File + metadata
+	•	Publish date: 2025-11-13 (Nov 13, 2025) using the site’s standard timezone.
+	•	Filename/slug: 2025-11-13-guaranteed-appointments-vs-lead-lists.mdx (or .md if Markdown). If slugs are auto-derived, set slug: guaranteed-appointments-vs-lead-lists.
+	•	Title: Guaranteed Appointments vs. Lead Lists: What’s Actually Better for Your Pipeline?
+	•	Description (1–2 sentences; no pricing): Brief, plain-language summary of the post’s value.
+	•	Tags: Use the site’s existing taxonomy (e.g., b2b, outbound, pipeline, sales, demand-gen).
+	•	Canonical URL: If the site normally includes it, build from site.baseUrl + blog path + slug.
+	•	Reading time: Use the project’s convention (omit if auto-calculated).
+
+2) Links (exact behavior)
+	•	Homepage (contextual link in body): https://www.demandflo.ai/
+	•	CTA destination (end of post): https://www.demandflo.ai/contact
+	•	If that route doesn’t exist, auto-detect the correct contact/booking page in the codebase (e.g., /contact-us, /get-in-touch, /book-a-call, /book-a-demo) and use the absolute URL.
+	•	External links (optional):
+	•	Only embed full absolute URLs for sources explicitly referenced in the article text (e.g., named reports, guides).
+	•	If the article contains no explicit external references, do not add any.
+	•	Use professional anchor text; don’t paste raw URLs inline.
+	•	Do not include pricing pages or any pricing info.
+
+3) Content formatting (optimize for readability)
+	•	Short paragraphs (2–4 lines), one idea per paragraph.
+	•	Use H2/H3 headings, bullets, and numbered lists for scannability.
+	•	Preserve the article’s meaning; do not invent stats or sources.
+	•	No pricing anywhere (no ranges; no “at no cost”—use “replacements included”).
+	•	Add descriptive alt text if images/components are standard in other posts.
+	•	Keep total reading time under 12 minutes.
+
+4) CTA block
+	•	End with the site’s standard CTA pattern (component or Markdown).
+	•	Copy tone from other posts (no pricing).
+	•	Link the CTA button/text to the CTA destination above.
+
+5) QA checklist
+	•	Renders locally without MDX/ESLint errors.
+	•	Appears on the blog index with the correct date (Nov 13, 2025), title, excerpt, tags, and reading time.
+	•	All embedded links resolve (homepage and CTA; external only if explicitly referenced in the article).
+	•	Mobile: headings and bullets wrap cleanly; lists are readable.
+	•	Commit message: feat(blog): add guaranteed-appointments-vs-lead-lists (2025-11-13)
+
+6) Article content (use verbatim; format for readability is OK)
+
+<<<ARTICLE_START>>>
+
+Guaranteed Appointments vs. Lead Lists: What’s Actually Better for Your Pipeline?
+
+You want more sales calls. There are two common paths:
+	•	Lead lists: you (or your team) do the outreach.
+	•	Guaranteed appointments: a partner books calls for you.
+
+Which is better? It depends on your stage, time, and goals. Let’s keep it simple.
+
+⸻
+
+TL;DR
+	•	Pick guaranteed appointments if you want fast results with low lift for your team.
+	•	Pick lead lists if you want full control and can invest steady time each week.
+	•	Pick an in-house SDR if you’re building a long-term sales engine and can wait for ramp.
+
+⸻
+
+What each option means
+
+Lead lists
+You get contacts. You verify them, write emails, send, follow up, qualify, and book. You own the process and the workload.
+
+Guaranteed appointments
+A partner runs research, outreach, and scheduling. They agree to a clear outcome (like a set number of qualified meetings) and include replacements for no-shows. You focus on taking the calls.
+
+In-house SDR
+You hire and coach a rep. You gain control and learning, but it takes time and steady management.
+
+⸻
+
+What really changes between them
+
+1) Speed to pipeline
+	•	Guaranteed appointments: often the fastest path to real calls.
+	•	Lead lists: setup and testing take time.
+	•	SDR: strongest long term, slower to start.
+
+2) Time and focus
+	•	Guaranteed appointments: very low lift for your team.
+	•	Lead lists: plan weekly time for data cleanup, deliverability, copy tests, and fast replies.
+	•	SDR: you’ll spend time hiring, coaching, and reviewing.
+
+3) Control and learning
+	•	Lead lists / SDR: you learn your market deeply and keep that knowledge in house.
+	•	Guaranteed appointments: you move faster; you learn less about the daily mechanics unless your partner shares playbooks.
+
+4) Data quality risk
+	•	Lead lists: data goes stale; duplicates and old emails hurt results. You own the fixes.
+	•	Guaranteed appointments: the partner should absorb more of that burden with ongoing verification and QA.
+
+5) Budget shape
+	•	Guaranteed appointments: clearer monthly outcomes and simpler planning.
+	•	Lead lists: lower hard costs on paper, but higher time costs and trial-and-error.
+	•	SDR: highest fixed commitment; best for complex sales and long-term scale.
+
+⸻
+
+A quick reality check on lead lists
+
+Lead lists can work very well, but only if you keep them fresh and your sending setup is tight. Here’s why many teams struggle:
+	•	Data gets old fast. Contacts change jobs and roles. Old data lowers open, reply, and meeting rates.
+	•	Inbox rules change. Weak domain setup, bounces, and spam traps hurt deliverability, which then lowers opens and replies.
+	•	Duplicates waste time. Duplicates and bad records skew results and confuse handoffs.
+
+If you go the list route, build a simple weekly routine: verify, dedupe, warm sending domains, test short plain-text copy, and answer every reply quickly.
+
+⸻
+
+When guaranteed appointments shine
+
+Choose a guaranteed meeting program when you:
+	•	Want meetings on the calendar in weeks, not months
+	•	Have limited team time for research, sending, and follow-ups
+	•	Prefer a predictable minimum number of calls each month
+	•	Sell a higher ACV offer where a few wins cover the program
+	•	Want a clean test without long contracts
+
+What to look for in a guaranteed program:
+	•	A clear definition of a qualified meeting (title, company size, ICP fit)
+	•	Show-rate support, with no-show replacements included
+	•	Transparent reporting (contacts, messaging themes, outcomes)
+	•	Clean handoffs to your calendar and CRM
+	•	Simple terms you can test month to month
+
+⸻
+
+A simple ROI check (use this before you choose)
+
+Use this tiny formula to sanity check any option:
+
+Expected revenue per month
+= Meetings × Show rate × Qualified rate × Close rate × Average deal size
+
+Example
+8 meetings × 90% show × 70% qualified × 20% close × $15,000
+= $15,120 expected revenue
+
+Now compare that to your total monthly cost for the option you choose. If the revenue number is higher by a healthy margin, you’re on the right track. If not, adjust your plan.
+
+(Tip: run the same math for lead lists, guaranteed programs, and an SDR so you see which path clears your hurdle rate.)
+
+⸻
+
+When lead lists are the better pick
+
+Go this route if you:
+	•	Have steady time each week for list cleanup, testing, and replies
+	•	Want full control over targeting and messaging
+	•	Plan to build a repeatable engine and keep the know-how in house
+
+Tips to make lists work:
+	•	Verify contacts often; enrich titles and company info
+	•	Warm domains and keep sending volumes steady
+	•	Use short, clear emails; test 1 idea at a time
+	•	Reply fast (same day) to every positive signal
+
+⸻
+
+When an in-house SDR makes sense
+
+Pick this if you:
+	•	Sell something complex that needs deep product knowledge
+	•	Have budget and time to ramp a rep the right way
+	•	Want to build a durable, long-term sales motion with full control
+
+Management checklist:
+	•	Clear ICP and talk tracks
+	•	Weekly coaching, QA on replies, and call reviews
+	•	Tight sync with AE handoffs and calendar
+
+⸻
+
+Common questions
+
+Do guaranteed programs really replace no-shows?
+They should. Look for a written policy that includes replacements and a follow-up process (reminders, rescheduling help).
+
+What about open and reply rates?
+They vary by industry, list quality, and deliverability. Good targeting, clean data, and better domain setup still win.
+
+How often should I refresh a lead list?
+Make it a habit. Plan ongoing verification and enrichment instead of a one-time clean.
+
+⸻
+
+Bottom line
+
+There isn’t one “best” choice for everyone. If you need calls now and want a simple commitment, guaranteed appointments are hard to beat. If you want to own every step and build long-term skill, lead lists or an SDR can pay off.
+
+Pick the path that matches your stage, your time, and your math. Then commit, measure, and keep improving.
+<<<ARTICLE_END>>>
+
+Now:
+	•	Create the file in the correct blog directory with the proper front matter and the article content.
+	•	Ensure it appears on the blog index with the date Nov 13, 2025 and reads cleanly on mobile and desktop.
+	•	Confirm the homepage and CTA links resolve; embed external links only if explicitly referenced in the article (otherwise skip).
+	•	Commit with feat(blog): add guaranteed-appointments-vs-lead-lists (2025-11-13).
