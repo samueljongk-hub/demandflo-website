@@ -147,6 +147,9 @@ export default function BlogPostPage() {
       // Only consider single-line content as headers (no internal newlines)
       if (trimmed.includes('\n')) return null;
       
+      // Check for numbered sections with parentheses like "1) Speed to pipeline"
+      if (/^\d+\)\s/.test(trimmed) && trimmed.length < 100) return 'h3';
+      
       // Check for section headers - questions or numbered sections
       if (trimmed.endsWith('?') && trimmed.length < 100) return 'h2';
       
@@ -159,6 +162,9 @@ export default function BlogPostPage() {
       // Check for mistake sections like "Mistake #1:"
       if (/^Mistake #\d+:/.test(trimmed)) return 'h2';
       
+      // Check for common section titles
+      if (/^(TL;DR|What each option means|What really changes between them|A quick reality check|When guaranteed appointments shine|A simple ROI check|When lead lists are the better pick|When an in-house SDR makes sense|Common questions|Bottom line|Tips to make lists work|What to look for|Management checklist)$/i.test(trimmed)) return 'h2';
+      
       // Check for other common header patterns (single line only)
       if ((trimmed.startsWith('Why ') || trimmed.startsWith('How ') || trimmed.startsWith('What ') || 
            trimmed.startsWith('The ') || trimmed.startsWith('Ready ') || trimmed.startsWith('Final ')) 
@@ -167,7 +173,16 @@ export default function BlogPostPage() {
       return null;
     };
 
-    const boldKeyPhrases = (text: string) => {
+    const parseMarkdown = (text: string) => {
+      let result = text;
+      
+      // Convert **bold** to <strong>
+      result = result.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      
+      // Convert *italic* to <em>
+      result = result.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      
+      // Auto-bold key phrases
       const keyPhrases = [
         'What I see:',
         'Why it backfires:',
@@ -184,9 +199,8 @@ export default function BlogPostPage() {
         'At Demand Flo'
       ];
       
-      let result = text;
       keyPhrases.forEach(phrase => {
-        const regex = new RegExp(`(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'g');
+        const regex = new RegExp(`(?<!<strong>)(${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})(?!</strong>)`, 'g');
         result = result.replace(regex, '<strong>$1</strong>');
       });
       
@@ -227,7 +241,7 @@ export default function BlogPostPage() {
       
       if (headerType === 'h3') {
         return (
-          <h3 key={index} className="text-xl lg:text-2xl font-semibold text-foreground mt-8 mb-4">
+          <h3 key={index} className="text-xl lg:text-2xl font-bold text-foreground mt-8 mb-4">
             {trimmed}
           </h3>
         );
@@ -265,19 +279,31 @@ export default function BlogPostPage() {
             )}
             {isOrderedList ? (
               <ol className="list-decimal list-inside space-y-2 ml-4">
-                {listItems.map((item, i) => (
-                  <li key={i} className="text-lg leading-relaxed text-foreground">
-                    {item.replace(/^\d+\.\s/, '')}
-                  </li>
-                ))}
+                {listItems.map((item, i) => {
+                  const cleanedItem = item.replace(/^\d+\.\s/, '');
+                  const formattedItem = parseMarkdown(cleanedItem);
+                  return (
+                    <li 
+                      key={i} 
+                      className="text-lg leading-relaxed text-foreground"
+                      dangerouslySetInnerHTML={{ __html: formattedItem }}
+                    />
+                  );
+                })}
               </ol>
             ) : (
               <ul className="list-disc list-inside space-y-2 ml-4">
-                {listItems.map((item, i) => (
-                  <li key={i} className="text-lg leading-relaxed text-foreground">
-                    {item.replace(/^(-\s|•\s)/, '')}
-                  </li>
-                ))}
+                {listItems.map((item, i) => {
+                  const cleanedItem = item.replace(/^(-\s|•\s)/, '');
+                  const formattedItem = parseMarkdown(cleanedItem);
+                  return (
+                    <li 
+                      key={i} 
+                      className="text-lg leading-relaxed text-foreground"
+                      dangerouslySetInnerHTML={{ __html: formattedItem }}
+                    />
+                  );
+                })}
               </ul>
             )}
           </div>
@@ -285,12 +311,12 @@ export default function BlogPostPage() {
       }
       
       // Regular paragraph
-      const paragraphWithBold = boldKeyPhrases(trimmed);
+      const paragraphWithMarkdown = parseMarkdown(trimmed);
       return (
         <p 
           key={index} 
           className="text-lg leading-relaxed text-foreground mb-6"
-          dangerouslySetInnerHTML={{ __html: paragraphWithBold }}
+          dangerouslySetInnerHTML={{ __html: paragraphWithMarkdown }}
         />
       );
     });
